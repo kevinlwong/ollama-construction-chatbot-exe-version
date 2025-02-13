@@ -2,16 +2,20 @@
     <div class="chat-container">
       <div class="chat-header">Chat with {{ model }}</div>
   
-      <!-- Thinking Process (Only Shows When Needed) -->
-      <div v-if="displayedThinking && isThinking" class="thinking-process">
-        <strong>Thinking:</strong>
-        <p>{{ displayedThinking }}</p>
-      </div>
-  
-      <!-- ✅ Chat Messages (Ensuring Chat History is Always Retained) -->
+      <!-- ✅ Chat Messages (Including Thinking Process) -->
       <div class="chat-messages">
         <div v-for="(msg, index) in messages" :key="index" :class="msg.sender">
-          <span class="message-text">{{ msg.text }}</span>
+          <template v-if="msg.type === 'thinking'">
+            <div class="thinking-message">
+              <button class="toggle-thinking" @click="toggleThinking(index)">
+                {{ msg.expanded ? 'Hide Thinking' : 'Show Thinking' }}
+              </button>
+              <p v-if="msg.expanded" class="thinking-text">{{ msg.text }}</p>
+            </div>
+          </template>
+          <template v-else>
+            <span class="message-text">{{ msg.text }}</span>
+          </template>
         </div>
       </div>
   
@@ -33,18 +37,16 @@
     data() {
       return {
         userInput: '',
-        messages: [], // ✅ Chat history is stored properly
-        displayedThinking: '', 
-        isThinking: false, // ✅ Only shows when DeepSeek provides it
+        messages: [],
+        isThinking: false,
       };
     },
     methods: {
       async sendMessage() {
         if (!this.userInput.trim()) return;
   
-        this.messages.push({ sender: 'user', text: this.userInput }); // ✅ Store user message in chat history
-        this.displayedThinking = '';
-        this.isThinking = false; // ✅ Reset thinking state
+        this.messages.push({ sender: 'user', text: this.userInput });
+        this.isThinking = false;
   
         try {
           const response = await fetch("http://localhost:5000/chat", {
@@ -56,7 +58,7 @@
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
           let finalResponse = '';
-          let hasThinking = false; // ✅ Track if DeepSeek provides a thinking phase
+          let hasThinking = false;
   
           while (true) {
             const { done, value } = await reader.read();
@@ -70,9 +72,8 @@
                 const parsed = JSON.parse(line);
   
                 if (parsed.type === "thinking") {
-                  this.isThinking = true; 
-                  hasThinking = true; // ✅ Ensure we only show thinking if it exists
-                  this.displayThinkingLetterByLetter(parsed.text);
+                  hasThinking = true;
+                  this.addThinkingToChat(parsed.text);
                 } else if (parsed.type === "final") {
                   this.isThinking = false;
                   this.displayMessageLetterByLetter(parsed.text);
@@ -83,10 +84,8 @@
             });
           }
   
-          // ✅ If no thinking phase was detected, do not display it at all
           if (!hasThinking) {
             this.isThinking = false;
-            this.displayedThinking = '';
           }
   
         } catch (error) {
@@ -96,18 +95,11 @@
   
         this.userInput = '';
       },
-      displayThinkingLetterByLetter(text) {
-        let index = 0;
-        this.displayedThinking = '';
-  
-        const interval = setInterval(() => {
-          if (index < text.length) {
-            this.displayedThinking += text[index];
-            index++;
-          } else {
-            clearInterval(interval);
-          }
-        }, 30);
+      addThinkingToChat(text) {
+        this.messages.push({ sender: 'bot', type: 'thinking', text, expanded: false });
+      },
+      toggleThinking(index) {
+        this.messages[index].expanded = !this.messages[index].expanded;
       },
       displayMessageLetterByLetter(text) {
         let index = 0;
@@ -149,22 +141,7 @@
     text-align: center;
   }
   
-  /* ✅ Ensuring Thinking Section Appears Only When Needed */
-  .thinking-process {
-    background: #333;
-    color: #ffc107;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    font-style: italic;
-    white-space: pre-line;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  /* ✅ Chat History is Retained */
+  /* ✅ Chat Messages */
   .chat-messages {
     height: 300px;
     overflow-y: auto;
@@ -191,6 +168,40 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     margin: 5px;
+  }
+  
+  /* ✅ Thinking Message Styling */
+  .thinking-message {
+    background: #333;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .thinking-text {
+    color: #ffc107;
+    font-style: italic;
+    white-space: pre-line;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  /* ✅ Toggle Button */
+  .toggle-thinking {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .toggle-thinking:hover {
+    background: #007bff;
   }
   
   .chat-input {

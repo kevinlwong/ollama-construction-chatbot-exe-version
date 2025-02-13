@@ -20,7 +20,8 @@ app.post('/chat', async (req, res) => {
     try {
         const response = await axios.post(OLLAMA_URL, {
             model: model,
-            prompt: `Think carefully before answering. If you think before responding, wrap your thought process inside <think>...</think>. Otherwise, just respond directly in English.\n\nUser: ${message}`
+            // prompt: `Think carefully before answering. If you think before responding, wrap your thought process inside <think>...</think>. Otherwise, just respond directly in English.\n\nUser: ${message}`
+            prompt: message
         }, { responseType: 'stream' });
 
         res.setHeader('Content-Type', 'application/json');
