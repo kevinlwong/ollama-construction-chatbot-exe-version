@@ -21,10 +21,16 @@
           </div>
         </template>
 
-        <!-- Final Chatbot Response -->
+        <!-- Final Chatbot Response (Markdown Supported) -->
         <template v-if="msg.type === 'final'">
-          <div class="bot-message">{{ msg.text }}</div>
+          <div class="bot-message">
+            <p v-if="msg.text.includes('```')">
+              <span v-html="renderMarkdown(msg.text)"></span>
+            </p>
+            <p v-else v-html="renderMarkdown(msg.text)"></p>
+          </div>
         </template>
+
 
       </div>
     </div>
@@ -37,7 +43,9 @@
   </div>
 </template>
 
+
 <script>
+import { marked } from 'marked';
 const { ipcRenderer } = window.require("electron");
 
 export default {
@@ -50,6 +58,11 @@ export default {
     };
   },
   methods: {
+    // ✅ Convert Markdown response to properly formatted HTML
+    renderMarkdown(text) {
+      return marked(text);
+    },
+
     async sendMessage() {
       if (!this.userInput.trim()) return;
 
@@ -59,8 +72,9 @@ export default {
       let isThinking = false;
       let finalResponse = "";
       let thinkingText = "";
-      let receivedThinkTag = false;  // ✅ Tracks if <think> tags were ever detected
+      let receivedThinkTag = false;
       let thinkingIndex = this.messages.length;
+      let thinkingAnimationActive = false;
 
       // ✅ Add "Thinking..." animation **ONLY IF DeepSeek R1 is Selected**
       if (this.model.includes("deepseek")) {
@@ -68,12 +82,18 @@ export default {
           sender: 'bot',
           type: 'thinking',
           text: "Thinking.",
-          expanded: true,
+          expanded: true, // ✅ Start expanded
         });
 
-        // Thinking animation to show it's processing
+        thinkingAnimationActive = true;
+
+        // Thinking animation
         let dots = 0;
         const thinkingAnimation = setInterval(() => {
+          if (!thinkingAnimationActive) {
+            clearInterval(thinkingAnimation); // ✅ Stop animation when real text starts
+            return;
+          }
           dots = (dots + 1) % 4;
           this.messages[thinkingIndex].text = "Thinking" + ".".repeat(dots);
           this.$forceUpdate();
@@ -89,6 +109,9 @@ export default {
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
+
+        // ✅ Placeholder for letter-by-letter response
+        let botMessageIndex = this.messages.length;
 
         while (true) {
           const { done, value } = await reader.read();
@@ -108,6 +131,11 @@ export default {
               }
 
               if (isThinking) {
+                // ✅ Stop "Thinking..." animation when real thinking text starts
+                if (thinkingAnimationActive) {
+                  thinkingAnimationActive = false;
+                }
+
                 let cleanText = parsed.response.replace(/<\/?think>/g, "").trim();
                 let words = cleanText.split(/\s+/);
 
@@ -125,7 +153,6 @@ export default {
 
               if (parsed.response.includes("</think>")) {
                 isThinking = false;
-                clearInterval(thinkingAnimation);
 
                 if (!thinkingText.trim()) {
                   thinkingText = "No thinking phase for this specific question.";
@@ -133,15 +160,15 @@ export default {
 
                 if (this.model.includes("deepseek")) {
                   this.messages[thinkingIndex].text = thinkingText.trim();
-                  this.messages[thinkingIndex].expanded = false;
+                  this.messages[thinkingIndex].expanded = false; // ✅ Collapse, but keep it visible
                 }
               }
 
-              // ✅ If no <think> tag was detected, capture response immediately
+              // ✅ If no <think> tag was detected, process response letter by letter
               if (!receivedThinkTag) {
-                finalResponse += parsed.response;
+                this.displayMessageLetterByLetter(parsed.response, botMessageIndex);
               } else if (!isThinking) {
-                finalResponse += parsed.response;
+                this.displayMessageLetterByLetter(parsed.response, botMessageIndex);
               }
 
             } catch (error) {
@@ -151,14 +178,10 @@ export default {
           this.$forceUpdate();
         }
 
-        // ✅ Remove "Thinking" message for models like Qwen2.5
-        if (!receivedThinkTag) {
-          this.messages = this.messages.filter(msg => msg.type !== 'thinking');
-        }
-
-        // ✅ Display final chatbot response letter by letter
-        if (finalResponse.trim()) {
-          this.displayMessageLetterByLetter(finalResponse.trim());
+        // ✅ Stop animation (but KEEP the "Thinking..." message visible)
+        thinkingAnimationActive = false;
+        if (this.model.includes("deepseek")) {
+          this.messages[thinkingIndex].expanded = false; // ✅ Collapse thinking phase but do NOT delete it
         }
 
       } catch (error) {
@@ -168,7 +191,6 @@ export default {
 
       this.userInput = '';
     }
-
 
     ,
 
@@ -181,33 +203,38 @@ export default {
 
     displayMessageLetterByLetter(text) {
       let index = 0;
-      let displayedText = "";
+      let botMessageIndex = this.messages.findIndex(msg => msg.type === "final");
+
+      // Ensure a bot message entry exists before streaming
+      if (botMessageIndex === -1) {
+        this.messages.push({
+          sender: "bot",
+          text: "",
+          type: "final",
+        });
+        botMessageIndex = this.messages.length - 1;
+      }
+
+      const words = text.split(/\s+/); // Split text into words
+      const delay = 50; // Adjust speed for better readability
 
       const interval = setInterval(() => {
-        if (index < text.length) {
-          displayedText += text[index];
-
-          if (
-            this.messages.length === 0 ||
-            this.messages[this.messages.length - 1].type !== "final"
-          ) {
-            this.messages.push({
-              sender: "bot",
-              text: displayedText,
-              type: "final",
-            });
-          } else {
-            this.messages[this.messages.length - 1].text = displayedText;
-          }
+        if (index < words.length) {
+          this.messages[botMessageIndex].text += (index === 0 ? "" : " ") + words[index]; // Preserve spacing
+          this.$forceUpdate();
           index++;
         } else {
           clearInterval(interval);
         }
-      }, 30);
-    },
+      }, delay);
+    }
+
+
+    ,
   },
 };
 </script>
+
 
 <style>
 /* Chat container */
@@ -260,21 +287,57 @@ export default {
   animation: fadeIn 0.2s ease-in-out;
 }
 
-/* Bot response */
+/* Bot message (Markdown properly formatted) */
 .bot-message {
   text-align: left;
   color: lightgreen;
   background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
-  max-width: 80%;
+  max-width: 85%;
   margin-right: auto;
-  margin-bottom: 20px;
   display: block;
   text-align: justify;
   word-wrap: break-word;
   animation: fadeIn 0.3s ease-in-out;
 }
+
+/* Properly format Markdown inside messages */
+.bot-message h1,
+.bot-message h2,
+.bot-message h3 {
+  color: #34eb98;
+  /* Green headers */
+  margin-bottom: 8px;
+}
+
+.bot-message p {
+  margin-bottom: 8px;
+}
+
+.bot-message ul {
+  padding-left: 20px;
+}
+
+.bot-message li {
+  margin-bottom: 6px;
+}
+
+/* Code blocks */
+.bot-message pre {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.bot-message code {
+  color: #ffcc00;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
 
 /* Thinking Message Styling */
 .thinking-message {
