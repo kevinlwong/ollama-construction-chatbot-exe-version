@@ -22,7 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.envdist_electron/*.exe
+.env
+dist_electron/*.exe
 dist_electron/win-unpacked/*.exe
 dist_electron/win-unpacked/resources/app.asar
 .env

@@ -57,8 +57,28 @@ export default {
       this.messages.push({ sender: 'user', text: this.userInput, type: 'user' });
 
       let isThinking = false;
-      let thinkingText = "";
       let finalResponse = "";
+      let thinkingText = "";
+      let receivedThinkTag = false;  // ✅ Tracks if <think> tags were ever detected
+      let thinkingIndex = this.messages.length;
+
+      // ✅ Add "Thinking..." animation **ONLY IF DeepSeek R1 is Selected**
+      if (this.model.includes("deepseek")) {
+        this.messages.push({
+          sender: 'bot',
+          type: 'thinking',
+          text: "Thinking.",
+          expanded: true,
+        });
+
+        // Thinking animation to show it's processing
+        let dots = 0;
+        const thinkingAnimation = setInterval(() => {
+          dots = (dots + 1) % 4;
+          this.messages[thinkingIndex].text = "Thinking" + ".".repeat(dots);
+          this.$forceUpdate();
+        }, 500);
+      }
 
       try {
         const response = await fetch("http://localhost:11434/api/generate", {
@@ -70,25 +90,6 @@ export default {
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
 
-        // new addition trying to implement thinking...
-        this.messages.push({
-          sender: 'bot',
-          type: 'thinking',
-          text: "Thinking.",
-          expanded: true, // Make it always visible while thinking
-        });
-
-
-        // Add a UI animation to update "Thinking..." state
-        let dots = 0;
-        const thinkingAnimation = setInterval(() => {
-          dots = (dots + 1) % 4;
-          this.messages[this.messages.length - 1].text = "Thinking" + ".".repeat(dots);
-          this.$forceUpdate();
-        }, 500); // Updates every 500ms
-
-        ///////// end of new addition
-
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -96,59 +97,63 @@ export default {
           const chunk = decoder.decode(value);
           const lines = chunk.trim().split("\n");
 
-          lines.forEach((line) => {
+          for (const line of lines) {
             try {
               const parsed = JSON.parse(line);
 
-              // ✅ Detect start of <think> section
               if (parsed.response.includes("<think>")) {
                 isThinking = true;
-                thinkingText = ""; // Reset
+                receivedThinkTag = true;
+                thinkingText = "";
               }
 
-              // ✅ Collect thinking text until </think>
               if (isThinking) {
-                thinkingText += " " + parsed.response.replace(/<\/?think>/g, "").trim();
+                let cleanText = parsed.response.replace(/<\/?think>/g, "").trim();
+                let words = cleanText.split(/\s+/);
+
+                for (let word of words) {
+                  if (word) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    thinkingText += word + " ";
+                    if (this.model.includes("deepseek")) {
+                      this.messages[thinkingIndex].text = thinkingText.trim();
+                      this.$forceUpdate();
+                    }
+                  }
+                }
               }
 
-              // ✅ Detect end of <think> section
               if (parsed.response.includes("</think>")) {
                 isThinking = false;
-
-                // ✅ If the thinking section is empty, set a default message
-                if (!thinkingText.trim()) {
-                  thinkingText = "No thinking phase for this specific question.";
-                }
-
-                // this.messages.push({
-                //   sender: 'bot',
-                //   type: 'thinking',
-                //   text: thinkingText,
-                //   expanded: false,
-                // });
-
-                clearInterval(thinkingAnimation); // Stop "Thinking..." animation
+                clearInterval(thinkingAnimation);
 
                 if (!thinkingText.trim()) {
                   thinkingText = "No thinking phase for this specific question.";
                 }
 
-                this.messages[this.messages.length - 1].text = thinkingText.trim();
-                this.messages[this.messages.length - 1].expanded = false;
-
+                if (this.model.includes("deepseek")) {
+                  this.messages[thinkingIndex].text = thinkingText.trim();
+                  this.messages[thinkingIndex].expanded = false;
+                }
               }
 
-              // ✅ Capture final response after </think>
-              else if (!isThinking) {
+              // ✅ If no <think> tag was detected, capture response immediately
+              if (!receivedThinkTag) {
+                finalResponse += parsed.response;
+              } else if (!isThinking) {
                 finalResponse += parsed.response;
               }
 
             } catch (error) {
               console.error("Error parsing streaming data:", error);
             }
-          });
-
+          }
           this.$forceUpdate();
+        }
+
+        // ✅ Remove "Thinking" message for models like Qwen2.5
+        if (!receivedThinkTag) {
+          this.messages = this.messages.filter(msg => msg.type !== 'thinking');
         }
 
         // ✅ Display final chatbot response letter by letter
@@ -163,6 +168,8 @@ export default {
 
       this.userInput = '';
     }
+
+
     ,
 
     toggleThinking(index) {
@@ -247,6 +254,7 @@ export default {
   border-radius: 10px;
   max-width: 60%;
   margin-left: auto;
+  margin-bottom: 20px;
   display: block;
   word-wrap: break-word;
   animation: fadeIn 0.2s ease-in-out;
