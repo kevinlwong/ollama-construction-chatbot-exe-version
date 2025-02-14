@@ -1,0 +1,8 @@
+version: 0.0.1
+files:
+  - url: Ollama-Chatbot-Setup-0.0.1.exe
+    sha512: Pzr9bRSyMFxH8ONXyie6JYvYiu7US/Oqdt8porFBSc6av1ZNkc0OGV4qbe9s4NrQnQfX7FykMAmQYX3Mh6MxGg==
+    size: 107567832
+path: Ollama-Chatbot-Setup-0.0.1.exe
+sha512: Pzr9bRSyMFxH8ONXyie6JYvYiu7US/Oqdt8porFBSc6av1ZNkc0OGV4qbe9s4NrQnQfX7FykMAmQYX3Mh6MxGg==
+releaseDate: '2025-02-14T03:04:11.559Z'

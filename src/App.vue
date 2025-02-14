@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1>Ollama Multi-Model Chatbot</h1>
+    <h1>WeekendAI Construction Chatbot</h1>
 
     <!-- Tab Navigation -->
     <div class="tabs">

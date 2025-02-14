@@ -1,0 +1,22 @@
+directories:
+  output: dist_electron
+  buildResources: build
+appId: com.ollama.chatbot
+productName: Ollama Chatbot
+files:
+  - filter:
+      - dist/**/*
+      - electron.js
+      - ollama-bin/**/*
+      - resources/**/*
+      - dist_electron/win-unpacked/resources/ollama.exe
+      - backend/**/*
+extraResources:
+  - from: resources/ollama.exe
+    to: ollama.exe
+    filter:
+      - '**/*'
+win:
+  target: nsis
+  icon: public/icon.ico
+electronVersion: 34.2.0

@@ -1,12 +1,16 @@
 {
   "name": "ollama-chatbot-vite",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "electron.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron": "electron electron.js",
+    "electron:dev": "set NODE_ENV=development && vite build && electron electron.js",
+    "electron:build": "set NODE_ENV=production && vite build && electron-builder"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -14,7 +18,38 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@electron/remote": "^2.1.2",
     "@vitejs/plugin-vue": "^5.2.1",
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
     "vite": "^6.1.0"
+  },
+  "build": {
+    "appId": "com.ollama.chatbot",
+    "productName": "Ollama Chatbot",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.js",
+      "ollama-bin/**/*",
+      "resources/**/*",
+      "dist_electron/win-unpacked/resources/ollama.exe",
+      "backend/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/ollama.exe",
+        "to": "ollama.exe",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icon.ico"
+    }
   }
 }
