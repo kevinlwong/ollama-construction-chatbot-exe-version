@@ -5,7 +5,6 @@ Here's a polished README for your Ollama Construction Chatbot based on the conte
 
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org/)
 [![Electron](https://img.shields.io/badge/Electron-34-blue)](https://www.electronjs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **AI-powered desktop assistant for construction professionals using local LLMs**  
 *Query building codes, material specs, and project docs through natural conversation - all processed locally for maximum privacy.*
