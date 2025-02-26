@@ -1,9 +1,24 @@
 <template>
-  <div class="app-container">
-    <h1>WeekendAI Construction Chatbot</h1>
 
-    <!-- Tab Navigation -->
-    <div class="tabs">
+  <div>
+    <h1>Ollama Multi-Model Chatbot</h1>
+
+    <!--Sidebar-->
+    <Sidebar />
+
+    <!--Model Selection-->
+    <ModelSelection />
+
+    <!-- Chatbot Component (Pass the Active Model) -->
+    <Chatbot :model="selectedModel" />
+  </div>
+
+
+  <!-- <div class="app-container">
+    <h1>WeekendAI Construction Chatbot</h1> -->
+
+  <!-- Tab Navigation -->
+  <!-- <div class="tabs">
       <button
         v-for="(tab, index) in tabs"
         :key="index"
@@ -12,35 +27,42 @@
       >
         {{ tab.name }}
       </button>
-    </div>
+    </div> -->
 
-    <!-- Chatbot Component (Pass the Active Model) -->
-    <Chatbot :model="activeModel" />
-  </div>
+  <!-- Chatbot Component (Pass the Active Model) -->
+  <!-- <Chatbot :model="activeModel" />
+  </div> -->
 </template>
 
 <script>
 import Chatbot from './components/Chatbot.vue';
+import Sidebar from "./components/sidebar/Sidebar.vue";
+import ModelSelection from "./components/model-selection/ModelSelection.vue";
+import { selectedModel } from "./components/model-selection/modelselect-state.js";
 
 export default {
-  components: { Chatbot },
-  data() {
-    return {
-      activeTab: 'Precon', // Default to Precon
-      activeModel: 'deepseek-r1:7b', // Default model for Precon
-      tabs: [
-        { name: 'Precon', model: 'deepseek-r1:7b' },
-        { name: 'Con', model: 'qwen2.5:7b' },
-        { name: 'Postcon', model: 'deepseek-r1:7b' }
-      ]
-    };
+  components: { Chatbot, Sidebar, ModelSelection },
+
+  setup() {
+    return { selectedModel };
   },
-  methods: {
-    setActiveTab(tabName, model) {
-      this.activeTab = tabName;
-      this.activeModel = model;
-    }
-  }
+  // data() {
+  //   return {
+  //     activeTab: 'Precon', // Default to Precon
+  //     activeModel: 'deepseek-r1:7b', // Default model for Precon
+  //     tabs: [
+  //       { name: 'Precon', model: 'deepseek-r1:7b' },
+  //       { name: 'Con', model: 'qwen2.5:7b' },
+  //       { name: 'Postcon', model: 'deepseek-r1:7b' }
+  //     ]
+  //   };
+  // },
+  // methods: {
+  //   setActiveTab(tabName, model) {
+  //     this.activeTab = tabName;
+  //     this.activeModel = model;
+  //   }
+  // }
 };
 </script>
 
