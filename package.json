@@ -2,6 +2,8 @@
   "name": "ollama-chatbot-vite",
   "private": true,
   "version": "0.0.1",
+  "description": "AI-powered construction chatbot using Ollama",
+  "author": "Kevin Wong, Joshua Casuga",
   "type": "commonjs",
   "main": "electron.js",
   "scripts": {
@@ -10,7 +12,8 @@
     "preview": "vite preview",
     "electron": "electron electron.js",
     "electron:dev": "set NODE_ENV=development && vite build && electron electron.js",
-    "electron:build": "set NODE_ENV=production && vite build && electron-builder"
+    "electron:build": "set NODE_ENV=production && vite build && electron-builder",
+    "clean": "rimraf dist dist_electron"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -20,10 +23,11 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@electron/remote": "^2.1.2",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@electron/remote": "^2.1.2",
     "electron": "^34.2.0",
     "electron-builder": "^25.1.8",
+    "rimraf": "^6.0.1",
     "vite": "^6.1.0"
   },
   "build": {
@@ -37,8 +41,7 @@
       "electron.js",
       "ollama-bin/**/*",
       "resources/**/*",
-      "dist_electron/win-unpacked/resources/ollama.exe",
-      "backend/**/*"
+      "!dist_electron/**"
     ],
     "extraResources": [
       {
@@ -52,6 +55,10 @@
     "win": {
       "target": "nsis",
       "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "public/icon.ico",
+      "uninstallerIcon": "public/icon.ico"
     }
   }
 }

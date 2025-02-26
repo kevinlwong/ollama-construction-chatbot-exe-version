@@ -8,7 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+node_modules/
 dist
+dist/
+dist_electron/
 dist-ssr
 *.local
 
@@ -22,8 +25,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.zip
 .env
-dist_electron/*.exe
+*.blockmap
+dist_electron/*
 dist_electron/win-unpacked/*.exe
 dist_electron/win-unpacked/resources/app.asar
 .env
+out/

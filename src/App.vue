@@ -67,11 +67,17 @@ export default {
 </script>
 
 <style>
-.app-container {
-  text-align: center;
-  background-color: #1e1e1e;
-  color: white;
-  padding: 20px;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tabs {
@@ -94,5 +100,16 @@ export default {
 .tabs button.active {
   background: #007bff;
   font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('@/assets/fonts/inter.woff2') format('woff2');
+  /* Path relative to CSS file */
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('@/assets/fonts/roboto.woff2') format('woff2');
 }
 </style>

@@ -1,0 +1,11 @@
+{
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": {
+          "electron": "25.0.0" // Match your Electron version
+        }
+      }],
+      "@vue/babel-preset-jsx"
+    ],
+    "plugins": ["@babel/plugin-transform-modules-commonjs"]
+  }

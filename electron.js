@@ -12,7 +12,7 @@ let mainWindow;
 
 app.whenReady().then(() => {
   console.log("Launching Electron App...");
-  
+
   const ollamaProcess = spawn(ollamaPath, ["serve"], {
     cwd: path.dirname(ollamaPath),
     detached: true,
@@ -26,17 +26,24 @@ app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 800,
+    title: "Construction Chatbot",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false, // Required for Electron-Renderer communication
     },
   });
+  icon: path.join(__dirname, "public/icon.ico"); // ← Taskbar icon
 
   const startURL = isDev
     ? "http://localhost:5173"
     : `file://${path.join(__dirname, "dist", "index.html")}`;
 
   mainWindow.loadURL(startURL);
+
+  // Optional: Force title to stay consistent
+  mainWindow.on("page-title-updated", (e) => {
+    e.preventDefault();
+  });
 
   app.on("window-all-closed", () => {
     ollamaProcess.kill();

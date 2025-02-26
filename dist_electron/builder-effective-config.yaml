@@ -9,8 +9,7 @@ files:
       - electron.js
       - ollama-bin/**/*
       - resources/**/*
-      - dist_electron/win-unpacked/resources/ollama.exe
-      - backend/**/*
+      - '!dist_electron/**'
 extraResources:
   - from: resources/ollama.exe
     to: ollama.exe
@@ -19,4 +18,7 @@ extraResources:
 win:
   target: nsis
   icon: public/icon.ico
+nsis:
+  installerIcon: public/icon.ico
+  uninstallerIcon: public/icon.ico
 electronVersion: 34.2.0
