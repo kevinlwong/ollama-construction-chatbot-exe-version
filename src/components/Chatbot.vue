@@ -54,7 +54,15 @@
 
 <script>
 import { marked } from 'marked';
-const { ipcRenderer } = window.require("electron");
+// const { ipcRenderer } = window.require("electron");
+let ipcRenderer = null;
+if (typeof window !== 'undefined' && window.require) {
+  try {
+    ipcRenderer = window.require('electron').ipcRenderer;
+  } catch (e) {
+    console.warn('Electron ipcRenderer not available');
+  }
+}
 
 export default {
   props: ["model"],
