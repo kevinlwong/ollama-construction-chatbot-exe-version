@@ -1,4 +1,3 @@
-Here's a polished README for your Ollama Construction Chatbot based on the context provided. I'll use **placeholders** where I made assumptions, which you should customize:
 
 
 # Ollama Construction Chatbot
