@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1>Ollama Multi-Model Chatbot</h1>
+    <h1>Bronco Vision</h1>
 
     <!--Sidebar-->
     <Sidebar />
