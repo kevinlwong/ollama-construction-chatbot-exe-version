@@ -10,6 +10,10 @@ files:
       - ollama-bin/**/*
       - resources/**/*
       - '!dist_electron/**'
+      - backend/**/**
+asarUnpack:
+  - backend/**
+  - resources/**
 extraResources:
   - from: resources/ollama.exe
     to: ollama.exe

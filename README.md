@@ -1,6 +1,6 @@
 
 
-# Ollama Construction Chatbot
+# Bronco Vision
 
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org/)
 [![Electron](https://img.shields.io/badge/Electron-34-blue)](https://www.electronjs.org/)
@@ -73,4 +73,4 @@ npm run electron:build
 
 ---
 
-If running npm electron:build does not work or has errors. Try deleting dist_electron folder and run npm run electron:build again as this will create a new dist_electron folder anyways, nad it will not delete any source code. Dist_electron is just the pacakage for the exe application.
+If running npm electron:build does not work or has errors. Try deleting dist_electron folder and run npm run electron:build again as this will create a new dist_electron folder anyways, nad it will not delete any source code. Dist_electron is just the pacakage for the exe application. Basically it freaks out when Ollama-Chatbot.exe is in win-unpacked.

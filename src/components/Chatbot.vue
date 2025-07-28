@@ -44,7 +44,7 @@
 
         <!-- Chat Input Box -->
         <div class="chat-input">
-            <FileDropUploader @file-selected="onFileSelected" />
+            <FileDropUploader :key="uploaderKey" @file-selected="onFileSelected" />
 
             <textarea v-model="userInput" placeholder="Ask Bronco Vision" @keyup.enter="sendMessage"
                 @keydown.enter.prevent="sendMessage"></textarea>
@@ -79,6 +79,7 @@ export default {
             thinkingMessages: [], // Stores separate thinking messages
             finalMessageBuffer: '',
             isProcessingFinal: false,
+            uploaderKey: 0,
         };
     },
     methods: {
@@ -104,6 +105,7 @@ export default {
             // 1) FILE MODE: if a file is attached, use /chat-with-file and stream NDJSON
             // ------------------------------------------------------------
             if (this.file) {
+                console.log("[sendMessage] Detected file, kicking off chatWithFileStream", this.file.name);
                 const thinkingIndex = this.messages.length;
                 this.messages.push({
                     sender: 'bot',
@@ -115,7 +117,13 @@ export default {
                 let finalIndex = -1;
 
                 try {
+                    console.log("[sendMessage] calling chatWithFileStream");
                     await chatWithFileStream(this.model, messageToSend, this.file, (parsed) => {
+                        if (parsed.type === 'status') {
+                            this.messages[thinkingIndex].text = parsed.text
+                            return
+                        }
+
                         if (parsed.type === 'thinking') {
                             this.messages[thinkingIndex].text = parsed.text;
                             this.$forceUpdate();
@@ -135,11 +143,13 @@ export default {
                             }
                         }
                     });
+                    console.log("[sendMessage] chatWithFileStream returned");
                 } catch (err) {
                     console.error('chat-with-file error:', err);
-                    this.messages.push({ sender: 'bot', text: "Error: Couldn't get a response.", type: 'final' });
+                    this.messages.push({ sender: 'bot', text: "Error: Couldn't get a response from chat-with-file.", type: 'final' });
                 } finally {
                     this.file = null; // clear file after use
+                    this.uploaderKey++;
                 }
 
                 return; // IMPORTANT: stop here, do NOT run the fallback path

@@ -1,7 +1,7 @@
 {
   "name": "ollama-chatbot-vite",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "AI-powered construction chatbot using Ollama",
   "author": "Kevin Wong, Joshua Casuga",
   "type": "commonjs",
@@ -18,9 +18,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "axios": "^1.7.9",
-    "logger": "^0.0.1",
+    "mammoth": "^1.9.1",
     "marked": "^15.0.7",
-    "morgan": "^1.10.1",
+    "pdfjs-dist": "^5.4.54",
+    "tesseract.js": "^6.0.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -43,7 +44,12 @@
       "electron.js",
       "ollama-bin/**/*",
       "resources/**/*",
-      "!dist_electron/**"
+      "!dist_electron/**",
+      "backend/**/**"
+    ],
+    "asarUnpack": [
+      "backend/**",
+      "resources/**"
     ],
     "extraResources": [
       {
