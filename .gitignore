@@ -12,6 +12,7 @@ node_modules/
 dist
 dist/
 dist_electron/
+dist_electron/*
 dist-ssr
 *.local
 
