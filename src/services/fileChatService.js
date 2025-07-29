@@ -11,6 +11,19 @@ import tesseractCoreUrl from "tesseract.js-core/tesseract-core.wasm.js?url";
 // Tell PDF.js where to find its worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
+// Initialize Electron IPC properly
+let isElectron = true;
+let ipcRenderer = null;
+
+if (typeof window !== 'undefined' && window.require) {
+  try {
+    ipcRenderer = window.require('electron').ipcRenderer;
+    isElectron = !!ipcRenderer;
+  } catch (e) {
+    console.warn('Not in Electron environment');
+    isElectron = false;
+  }
+}
 /**
  * Extract raw text from .txt, .docx, .pdf or via OCR fallback
  */
@@ -67,12 +80,43 @@ async function extractTextFromFile(file) {
   }
 }
 
+async function doExtract(file) {
+  if (isElectron && file.path) {
+    // Only use file path if we're in Electron AND the file has a path property
+    return ipc.invoke("extract-file-text", {
+      filePath: file.path,
+      fileName: file.name
+    });
+  } else {
+    // For browser File objects, use buffer-based extraction
+    const arrayBuffer = await file.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
+    
+    if (typeof window !== 'undefined' && window.require) {
+      // We're in Electron - use IPC
+      const { ipcRenderer } = window.require("electron");
+      return ipcRenderer.invoke("extract-file-text-buffer", {
+        fileName: file.name,
+        buffer: Array.from(uint8Array)
+      });
+    } else {
+      // We're in browser - use client-side extraction
+      return extractTextFromFile(file);
+    }
+  }
+}
 /**
- * Stream a “chat with file” prompt straight into Ollama’s /api/generate
+ * Stream a "chat with file" prompt straight into Ollama's /api/generate
  */
 export async function chatWithFileStream(model, message, file, onMessage) {
+  onMessage({ type: "status", text: "⏳ Extracting text from file…" });
+
   // 1) extract text
-  const fileText = await extractTextFromFile(file);
+  const fileText = await doExtract(file);
+  onMessage({
+    type: "status",
+    text: `✔️ Extracted ${fileText.length} characters`,
+  });
 
   // 2) build the prompt
   const prompt = `

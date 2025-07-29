@@ -59,14 +59,15 @@ import { marked } from 'marked';
 import FileDropUploader from './FileDropUploader.vue';
 import { chatWithFileStream } from '@/services/fileChatService.js';
 // const { ipcRenderer } = window.require("electron");
-let ipcRenderer = null;
-if (typeof window !== 'undefined' && window.require) {
-    try {
-        ipcRenderer = window.require('electron').ipcRenderer;
-    } catch (e) {
-        console.warn('Electron ipcRenderer not available');
-    }
-}
+
+// let ipcRenderer = null;
+// if (typeof window !== 'undefined' && window.require) {
+//     try {
+//         ipcRenderer = window.require('electron').ipcRenderer;
+//     } catch (e) {
+//         console.warn('Electron ipcRenderer not available');
+//     }
+// }
 
 export default {
     props: ["model"],
@@ -88,7 +89,10 @@ export default {
             return marked(text);
         },
         onFileSelected(file) {
+            console.log("FILE RECEIVED", file.name, file.size, typeof file.arrayBuffer);
+
             this.file = file;
+            this.fileName = file.name;
         },
 
         async sendMessage() {
@@ -101,36 +105,72 @@ export default {
             // Add user message to chat
             this.messages.push({ sender: 'user', text: messageToSend, type: 'user' });
 
+            // Declare these variables at the top of the method
+            let finalIndex = -1;
+            let isThinking = false;
+            let finalResponse = "";
+            let thinkingText = "";
+            let receivedThinkTag = false;
+            let thinkingIndex = this.messages.length;
+            let thinkingAnimationActive = false;
+
             // ------------------------------------------------------------
             // 1) FILE MODE: if a file is attached, use /chat-with-file and stream NDJSON
             // ------------------------------------------------------------
             if (this.file) {
                 console.log("[sendMessage] Detected file, kicking off chatWithFileStream", this.file.name);
-                const thinkingIndex = this.messages.length;
+                thinkingIndex = this.messages.length;
                 this.messages.push({
                     sender: 'bot',
                     type: 'thinking',
-                    text: 'Thinking...',
+                    text: '⏳ Processing file...',
                     expanded: true,
                 });
 
-                let finalIndex = -1;
+                // Start thinking animation for file processing
+                let fileThinkingActive = true;
+                let currentStatus = '⏳ Processing file';
+
+                const fileThinkingAnimation = setInterval(() => {
+                    if (!fileThinkingActive) {
+                        clearInterval(fileThinkingAnimation);
+                        return;
+                    }
+
+                    // Animate the current status with dots
+                    const dots = (Date.now() / 500) % 4; // Change every 500ms
+                    this.messages[thinkingIndex].text = currentStatus + '.'.repeat(Math.floor(dots) + 1);
+                    this.$forceUpdate();
+                }, 500);
 
                 try {
                     console.log("[sendMessage] calling chatWithFileStream");
                     await chatWithFileStream(this.model, messageToSend, this.file, (parsed) => {
                         if (parsed.type === 'status') {
-                            this.messages[thinkingIndex].text = parsed.text
-                            return
+                            // Update the status and keep animating
+                            currentStatus = parsed.text.replace(/[.]+$/, ''); // Remove existing dots
+                            this.messages[thinkingIndex].text = parsed.text;
+
+                            // If we've moved to "Fine-tuned model is thinking", show that it might take longer
+                            if (parsed.text.includes('Fine-tuned model is thinking')) {
+                                currentStatus = 'Model processing (this may take a while)';
+                                this.messages[thinkingIndex].text = currentStatus + '...';
+                            }
+                            return;
                         }
 
                         if (parsed.type === 'thinking') {
+                            // Stop the loading animation when we get actual thinking content
+                            fileThinkingActive = false;
+                            clearInterval(fileThinkingAnimation);
                             this.messages[thinkingIndex].text = parsed.text;
                             this.$forceUpdate();
                         } else if (parsed.type === 'final') {
+                            // Stop the loading animation when we get the final response
+                            fileThinkingActive = false;
+                            clearInterval(fileThinkingAnimation);
                             this.messages[thinkingIndex].expanded = false;
 
-                            // Create a final message and animate the typewriter, same as your normal path
                             this.messages.push({
                                 sender: 'bot',
                                 text: '',
@@ -145,27 +185,29 @@ export default {
                     });
                     console.log("[sendMessage] chatWithFileStream returned");
                 } catch (err) {
+                    // Stop animation on error
+                    fileThinkingActive = false;
+                    clearInterval(fileThinkingAnimation);
                     console.error('chat-with-file error:', err);
-                    this.messages.push({ sender: 'bot', text: "Error: Couldn't get a response from chat-with-file.", type: 'final' });
+                    this.messages.push({
+                        sender: 'bot',
+                        text: "Error: Couldn't get a response from chat-with-file.",
+                        type: 'final'
+                    });
                 } finally {
-                    this.file = null; // clear file after use
+                    // Ensure animation is stopped
+                    fileThinkingActive = false;
+                    clearInterval(fileThinkingAnimation);
+                    this.file = null;
                     this.uploaderKey++;
                 }
 
-                return; // IMPORTANT: stop here, do NOT run the fallback path
+                return;
             }
 
             // ------------------------------------------------------------
             // 2) NO FILE: keep your original /api/generate streaming logic
             // ------------------------------------------------------------
-
-            let isThinking = false;
-            let finalIndex = -1; // We'll create a new "final" message as needed
-            let finalResponse = "";
-            let thinkingText = "";
-            let receivedThinkTag = false;
-            let thinkingIndex = this.messages.length;
-            let thinkingAnimationActive = false;
 
             //  Add "Thinking..." animation **ONLY IF DeepSeek R1 is Selected**
             if (this.model.includes("deepseek")) {
@@ -200,9 +242,6 @@ export default {
 
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
-
-                // let botMessageIndex = this.messages.length;
-                finalIndex = -1;
 
                 while (true) {
                     const { done, value } = await reader.read();
@@ -310,7 +349,7 @@ export default {
 
             // We'll go char-by-char or word-by-word. Let's do char-by-char:
             const chars = text.split("");
-            let i = 0;
+            let index = 0;
 
             // Make sure there's actually a final message for us
             if (!this.messages[finalIndex]) {

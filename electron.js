@@ -6,6 +6,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const { extractTextFromFile } = require("./backend/extract.cjs");
 
 const isDev = process.env.NODE_ENV === "development";
 const rootDir = isDev
@@ -98,6 +99,24 @@ app.on("before-quit", () => {
   backendProc?.kill();
   ollamaProc?.kill();
 });
+
+ipcMain.handle("extract-file-text", async (event, { filePath, fileName }) => {
+  try {
+    return await extractTextFromFile(filePath, fileName);
+  } catch (err) {
+    console.error("extract failed:", err);
+    throw err;
+  }
+});
+
+ipcMain.handle(
+  "extract-file-text-buffer",
+  async (event, { fileName, buffer }) => {
+    const nodeBuffer = Buffer.from(buffer); // Restore Node.js Buffer
+    const { extractTextFromBuffer } = require("./backend/extract.cjs");
+    return await extractTextFromBuffer(nodeBuffer, fileName);
+  }
+);
 
 /* ───── simple IPC helper (unchanged) ───── */
 ipcMain.handle(
