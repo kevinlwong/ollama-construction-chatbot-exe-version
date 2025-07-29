@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+nul
 node_modules
 node_modules/
 dist
@@ -15,7 +15,8 @@ dist_electron/
 dist_electron/*
 dist-ssr
 *.local
-
+.claude
+.claude/*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

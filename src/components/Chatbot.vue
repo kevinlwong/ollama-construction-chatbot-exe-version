@@ -81,6 +81,7 @@ export default {
             finalMessageBuffer: '',
             isProcessingFinal: false,
             uploaderKey: 0,
+            activeIntervals: [], // Track active intervals for cleanup
         };
     },
     methods: {
@@ -108,9 +109,7 @@ export default {
             // Declare these variables at the top of the method
             let finalIndex = -1;
             let isThinking = false;
-            let finalResponse = "";
             let thinkingText = "";
-            let receivedThinkTag = false;
             let thinkingIndex = this.messages.length;
             let thinkingAnimationActive = false;
 
@@ -134,6 +133,7 @@ export default {
                 const fileThinkingAnimation = setInterval(() => {
                     if (!fileThinkingActive) {
                         clearInterval(fileThinkingAnimation);
+                        this.activeIntervals = this.activeIntervals.filter(id => id !== fileThinkingAnimation);
                         return;
                     }
 
@@ -142,20 +142,24 @@ export default {
                     this.messages[thinkingIndex].text = currentStatus + '.'.repeat(Math.floor(dots) + 1);
                     this.$forceUpdate();
                 }, 500);
+                this.activeIntervals.push(fileThinkingAnimation);
 
                 try {
                     console.log("[sendMessage] calling chatWithFileStream");
                     await chatWithFileStream(this.model, messageToSend, this.file, (parsed) => {
                         if (parsed.type === 'status') {
-                            // Update the status and keep animating
-                            currentStatus = parsed.text.replace(/[.]+$/, ''); // Remove existing dots
+                            // Update the status message
                             this.messages[thinkingIndex].text = parsed.text;
-
-                            // If we've moved to "Fine-tuned model is thinking", show that it might take longer
+                            
+                            // Update currentStatus for animation (remove existing dots/ellipsis)
+                            currentStatus = parsed.text.replace(/[.…]+$/, '');
+                            
+                            // Special handling for model thinking phase
                             if (parsed.text.includes('Fine-tuned model is thinking')) {
                                 currentStatus = 'Model processing (this may take a while)';
-                                this.messages[thinkingIndex].text = currentStatus + '...';
                             }
+                            
+                            // Keep animation going during status updates
                             return;
                         }
 
@@ -163,12 +167,17 @@ export default {
                             // Stop the loading animation when we get actual thinking content
                             fileThinkingActive = false;
                             clearInterval(fileThinkingAnimation);
+                            this.activeIntervals = this.activeIntervals.filter(id => id !== fileThinkingAnimation);
+                            
+                            // Update the thinking message with actual content
                             this.messages[thinkingIndex].text = parsed.text;
+                            this.messages[thinkingIndex].expanded = true; // Keep expanded to show thinking
                             this.$forceUpdate();
                         } else if (parsed.type === 'final') {
                             // Stop the loading animation when we get the final response
                             fileThinkingActive = false;
                             clearInterval(fileThinkingAnimation);
+                            this.activeIntervals = this.activeIntervals.filter(id => id !== fileThinkingAnimation);
                             this.messages[thinkingIndex].expanded = false;
 
                             this.messages.push({
@@ -188,6 +197,7 @@ export default {
                     // Stop animation on error
                     fileThinkingActive = false;
                     clearInterval(fileThinkingAnimation);
+                    this.activeIntervals = this.activeIntervals.filter(id => id !== fileThinkingAnimation);
                     console.error('chat-with-file error:', err);
                     this.messages.push({
                         sender: 'bot',
@@ -198,6 +208,7 @@ export default {
                     // Ensure animation is stopped
                     fileThinkingActive = false;
                     clearInterval(fileThinkingAnimation);
+                    this.activeIntervals = this.activeIntervals.filter(id => id !== fileThinkingAnimation);
                     this.file = null;
                     this.uploaderKey++;
                 }
@@ -225,12 +236,14 @@ export default {
                 const thinkingAnimation = setInterval(() => {
                     if (!thinkingAnimationActive) {
                         clearInterval(thinkingAnimation); //  Stop animation when real text starts
+                        this.activeIntervals = this.activeIntervals.filter(id => id !== thinkingAnimation);
                         return;
                     }
                     dots = (dots + 1) % 4;
                     this.messages[thinkingIndex].text = "Thinking" + ".".repeat(dots);
                     this.$forceUpdate();
                 }, 500);
+                this.activeIntervals.push(thinkingAnimation);
             }
 
             try {
@@ -256,7 +269,6 @@ export default {
 
                             if (parsed.response.includes("<think>")) {
                                 isThinking = true;
-                                receivedThinkTag = true;
                                 thinkingText = "";
                             }
 
@@ -347,10 +359,6 @@ export default {
             // Just skip if empty chunk
             if (!text.trim()) return;
 
-            // We'll go char-by-char or word-by-word. Let's do char-by-char:
-            const chars = text.split("");
-            let index = 0;
-
             // Make sure there's actually a final message for us
             if (!this.messages[finalIndex]) {
                 this.messages.push({ sender: "bot", text: "", type: "final" });
@@ -359,6 +367,7 @@ export default {
 
             const words = text.split(/\s+/); // Split text into words
             const delay = 50; // Adjust speed for better readability
+            let index = 0;
             const interval = setInterval(() => {
                 if (index < words.length) {
                     this.messages[finalIndex].text += (index === 0 ? "" : " ") + words[index]; // Preserve spacing
@@ -373,6 +382,11 @@ export default {
 
 
 
+    },
+    beforeUnmount() {
+        // Clean up any active intervals
+        this.activeIntervals.forEach(intervalId => clearInterval(intervalId));
+        this.activeIntervals = [];
     },
 };
 </script>
