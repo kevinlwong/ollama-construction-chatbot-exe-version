@@ -1,13 +1,16 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "server.js",
-  "type": "module",
+  "main": "server.cjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start": "node server.js",
     "start:enhanced": "node server-enhanced.cjs",
     "start:rag": "node server-enhanced.cjs"
+=======
+    "start": "node server.cjs"
+>>>>>>> 3855a580b5f8dfcc58d397932cd8e5e461cd3850
   },
   "keywords": [],
   "author": "",

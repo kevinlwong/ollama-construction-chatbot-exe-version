@@ -8,7 +8,7 @@ const multer = require("multer");
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
 const crypto = require("crypto");
-const { createWorker } = require("tesseract.js"); // ✅ FIXED: Correct import
+const { createWorker } = require("tesseract.js");
 const { fromPath } = require("pdf2pic");
 
 const app = express();
@@ -20,8 +20,6 @@ app.use((req, res, next) => {
   next();
 });
 const upload = multer({ dest: "uploads/" });
-// const OLLAMA_PATH = "./resources/ollama.exe";
-// const OLLAMA_PATH = path.join(__dirname, "resources", "ollama.exe");
 const OLLAMA_PATH = path.resolve(__dirname, "..", "resources", "ollama.exe");
 
 console.log("OLLAMA_PATH:", OLLAMA_PATH, "exists?", fs.existsSync(OLLAMA_PATH));
@@ -169,13 +167,24 @@ app.post("/chat-with-file", upload.single("file"), async (req, res) => {
   }
 
   try {
+    // Set streaming headers first
+    res.setHeader("Content-Type", "application/x-ndjson");
+    res.setHeader("Transfer-Encoding", "chunked");
+    
+    // Send status updates during file processing
+    res.write(JSON.stringify({ type: "status", text: "⏳ Extracting text from file..." }) + "\n");
+    
     // Extract & cleanup
     console.log("[chat-with-file] extracting text...");
     const parsedText = await extractTextFromFile(file.path, file.originalname);
     console.log("[chat-with-file] extracted text length:", parsedText.length);
 
+    res.write(JSON.stringify({ type: "status", text: `✔️ Extracted ${parsedText.length} characters` }) + "\n");
+    
     await fsp.unlink(file.path).catch(() => {});
     console.log("[chat-with-file] uploaded file deleted");
+
+    res.write(JSON.stringify({ type: "status", text: "Fine-tuned model is thinking..." }) + "\n");
 
     // Build the combined prompt
     const prompt =
@@ -234,9 +243,12 @@ function streamOllama(model, prompt, res) {
     ollama.stdin.write(prompt + "\n");
     ollama.stdin.end();
 
-    res.setHeader("Content-Type", "application/x-ndjson");
-    res.setHeader("Transfer-Encoding", "chunked");
-    // after res.setHeader(...)
+    // Only set headers if not already set (for direct /chat endpoint)
+    if (!res.headersSent && !res.getHeader("Content-Type")) {
+      res.setHeader("Content-Type", "application/x-ndjson");
+      res.setHeader("Transfer-Encoding", "chunked");
+    }
+    
     res.write(
       JSON.stringify({ type: "status", text: "Ollama is loading the model…" }) +
         "\n"

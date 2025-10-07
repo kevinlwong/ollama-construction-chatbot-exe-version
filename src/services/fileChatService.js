@@ -11,6 +11,19 @@ import tesseractCoreUrl from "tesseract.js-core/tesseract-core.wasm.js?url";
 // Tell PDF.js where to find its worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
+// Initialize Electron IPC properly
+let isElectron = true;
+let ipcRenderer = null;
+
+if (typeof window !== 'undefined' && window.require) {
+  try {
+    ipcRenderer = window.require('electron').ipcRenderer;
+    isElectron = !!ipcRenderer;
+  } catch (e) {
+    console.warn('Not in Electron environment');
+    isElectron = false;
+  }
+}
 /**
  * Extract raw text from .txt, .docx, .pdf or via OCR fallback
  */
@@ -67,51 +80,84 @@ async function extractTextFromFile(file) {
   }
 }
 
+async function doExtract(file) {
+  if (isElectron && ipcRenderer) {
+    try {
+      // First try file path if available (more efficient)
+      if (file.path) {
+        return await ipcRenderer.invoke("extract-file-text", {
+          filePath: file.path,
+          fileName: file.name
+        });
+      } else {
+        // Fallback to buffer-based extraction
+        const arrayBuffer = await file.arrayBuffer();
+        const uint8Array = new Uint8Array(arrayBuffer);
+        return await ipcRenderer.invoke("extract-file-text-buffer", {
+          fileName: file.name,
+          buffer: Array.from(uint8Array)
+        });
+      }
+    } catch (error) {
+      console.warn('IPC extraction failed, falling back to client-side:', error);
+      return extractTextFromFile(file);
+    }
+  } else {
+    // Browser environment - use client-side extraction
+    return extractTextFromFile(file);
+  }
+}
 /**
- * Stream a “chat with file” prompt straight into Ollama’s /api/generate
+ * Stream a "chat with file" prompt through Express backend
  */
 export async function chatWithFileStream(model, message, file, onMessage) {
-  // 1) extract text
-  const fileText = await extractTextFromFile(file);
+  onMessage({ type: "status", text: "⏳ Uploading file to backend..." });
 
-  // 2) build the prompt
-  const prompt = `
-${message}
+  // Create FormData to send file to Express backend
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('model', model);
+  formData.append('message', message);
 
----
-Context from file (${file.name}):
-${fileText}
----`;
-  onMessage({ type: "status", text: "Fine-tuned model is thinking…" });
+  try {
+    // POST to Express backend /chat-with-file endpoint
+    const res = await fetch("http://localhost:5000/chat-with-file", {
+      method: "POST",
+      body: formData,
+    });
 
-  // 3) POST to Ollama
-  const res = await fetch("http://localhost:11434/api/generate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model, prompt }),
-  });
-  if (!res.ok) throw new Error(`Ollama API error ${res.status}`);
+    if (!res.ok) {
+      throw new Error(`Backend error ${res.status}: ${await res.text()}`);
+    }
 
-  // 4) stream the NDJSON chunks
-  const reader = res.body.getReader();
-  const dec = new TextDecoder();
-  let buf = "";
+    // Stream the NDJSON response from Express
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
 
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buf += dec.decode(value, { stream: true });
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() || ""; // Keep partial line in buffer
 
-    const lines = buf.split("\n");
-    buf = lines.pop(); // partial line
-
-    for (const line of lines) {
-      if (!line.trim()) continue;
-      try {
-        onMessage(JSON.parse(line));
-      } catch {
-        console.warn("Bad NDJSON chunk:", line);
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        try {
+          const parsed = JSON.parse(line);
+          onMessage(parsed);
+        } catch (error) {
+          console.warn("Bad NDJSON chunk:", line, error);
+        }
       }
     }
+  } catch (error) {
+    console.error("chatWithFileStream error:", error);
+    onMessage({ 
+      type: "final", 
+      text: `Error: ${error.message || 'Failed to process file with backend'}` 
+    });
   }
 }

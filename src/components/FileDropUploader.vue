@@ -1,11 +1,6 @@
 <template>
-  <div
-    class="file-drop"
-    @dragover.prevent
-    @drop.prevent="onDrop"
-    @click="triggerFileSelect"
-  >
-      <input ref="inputRef" type="file" class="visually-hidden" @change="onFileChange" />
+  <div class="file-drop" @dragover.prevent @drop.prevent="onDrop" @click="triggerFileSelect">
+    <input ref="inputRef" type="file" class="visually-hidden" @change="onFileChange" />
     <div v-if="fileName" class="file-name">
       <i class="fa-solid fa-file"></i> {{ fileName }}
     </div>
@@ -28,6 +23,9 @@ function triggerFileSelect() {
 
 function onFileChange(e) {
   const file = e.target.files[0];
+  console.log("File:", file)           // inspect in DevTools
+  console.log("File name:", file.name)      // standard API
+  console.log("File path:", file.path)
   if (file) {
     fileName.value = file.name;
     emit('file-selected', file);
@@ -36,6 +34,9 @@ function onFileChange(e) {
 
 function onDrop(e) {
   const file = e.dataTransfer.files[0];
+  console.log("File:", file)           // inspect in DevTools
+  console.log("File name:", file.name)      // standard API
+  console.log("File path:", file.path)
   if (file) {
     fileName.value = file.name;
     emit('file-selected', file);
@@ -54,17 +55,21 @@ function onDrop(e) {
   margin-bottom: 1rem;
   transition: 0.2s ease-in-out;
 }
+
 .file-drop:hover {
   background: #f9f9f9;
 }
+
 .file-name {
   color: #2d85f0;
   font-weight: 600;
 }
+
 .drop-instruction {
   font-size: 14px;
   color: #888;
 }
+
 /* Hide the native file input completely */
 .visually-hidden {
   position: absolute !important;
@@ -73,7 +78,7 @@ function onDrop(e) {
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
-  clip: rect(0,0,0,0) !important;
+  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
 }

@@ -16,7 +16,8 @@ dist_electron/
 dist_electron/*
 dist-ssr
 *.local
-
+.claude
+.claude/*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
