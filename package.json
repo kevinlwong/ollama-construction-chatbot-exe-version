@@ -50,12 +50,17 @@
       "electron.js",
       "resources/**/*",
       "backend/**/*",
-      "!backend/node_modules/**/*",
+      "node_modules/**/*",
+      "!node_modules/.cache",
       "!dist_electron/**"
     ],
     "asarUnpack": [
       "backend/**",
-      "resources/**"
+      "resources/**",
+      "node_modules/pdf-parse/**",
+      "node_modules/mammoth/**",
+      "node_modules/tesseract.js/**",
+      "node_modules/node-ensure/**"
     ],
     "extraResources": [
       {

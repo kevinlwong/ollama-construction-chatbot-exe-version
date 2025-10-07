@@ -93,12 +93,9 @@ export default {
             finalMessageBuffer: '',
             isProcessingFinal: false,
             uploaderKey: 0,
-<<<<<<< HEAD
             selectedProject: 'olympic-hill', // Default to Olympic Hill project
             availableProjects: [],
-=======
             activeIntervals: [], // Track active intervals for cleanup
->>>>>>> 3855a580b5f8dfcc58d397932cd8e5e461cd3850
         };
     },
     methods: {

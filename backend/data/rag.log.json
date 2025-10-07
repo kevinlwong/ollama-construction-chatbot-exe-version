@@ -916,5 +916,688 @@
     "chunksSelected": 5,
     "contextLength": 7359,
     "avgSimilarity": 0.4076812825524604
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.837Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "add_project_error",
+    "error": "Project with ID 'olympic-hill' already exists",
+    "projectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.841Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "olympic-hill",
+    "textLength": 6688,
+    "filename": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.842Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "olympic-hill",
+    "chunkOptions": {
+      "chunkSize": 600,
+      "overlap": 75,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.844Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "avgChunkSize": 1466.2
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.845Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.041Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_progress",
+    "projectId": "olympic-hill",
+    "completed": 5,
+    "total": 5,
+    "percentage": 100
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.043Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "storage_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.050Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_vector_store",
+    "chunks": 12,
+    "projects": 0
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.054Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.055Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunks_added",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "sourceFile": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.063Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.101Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.103Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 5317,
+    "avgSimilarity": 0.48702810827950316
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.105Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.130Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.131Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 6481,
+    "avgSimilarity": 0.5998433285344857
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.133Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.158Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.159Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 5317,
+    "avgSimilarity": 0.514151836722539
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.163Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.189Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.191Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 5317,
+    "avgSimilarity": 0.5084775879640128
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.194Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.222Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.223Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 5317,
+    "avgSimilarity": 0.4541674947430652
+  },
+  {
+    "timestamp": "2025-10-07T01:13:07.919Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.113Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 10,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.116Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 10,
+    "chunksSelected": 7,
+    "contextLength": 7646,
+    "avgSimilarity": 0.4583140323626346
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.396Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "add_project_error",
+    "error": "Project with ID 'olympic-hill' already exists",
+    "projectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.399Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "olympic-hill",
+    "textLength": 6688,
+    "filename": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.400Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "olympic-hill",
+    "chunkOptions": {
+      "chunkSize": 600,
+      "overlap": 75,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.402Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "avgChunkSize": 1466.2
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.403Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.978Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_progress",
+    "projectId": "olympic-hill",
+    "completed": 5,
+    "total": 5,
+    "percentage": 100
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.980Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "storage_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.990Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_vector_store",
+    "chunks": 17,
+    "projects": 0
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.996Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.997Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunks_added",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "sourceFile": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.008Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.038Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.040Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 6710,
+    "avgSimilarity": 0.5373916794692924
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.043Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.072Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.074Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 2738,
+    "avgSimilarity": 0.6192589379282214
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.076Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.102Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.105Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 6710,
+    "avgSimilarity": 0.5266587339688286
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.107Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.135Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.137Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 6710,
+    "avgSimilarity": 0.5227120873637678
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.139Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.166Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 6,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.168Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "chunksFound": 6,
+    "chunksSelected": 6,
+    "contextLength": 2738,
+    "avgSimilarity": 0.46307569720873204
+  },
+  {
+    "timestamp": "2025-10-07T01:42:36.025Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.193Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 10,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.198Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 10,
+    "chunksSelected": 9,
+    "contextLength": 7979,
+    "avgSimilarity": 0.48349633188074786
+  },
+  {
+    "timestamp": "2025-10-07T19:29:50.456Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "What is this project about in short?",
+    "detectedProject": null,
+    "finalProjectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T19:29:50.459Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is this project about in short?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.146Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 10,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.148Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is this project about in short?",
+    "projectId": "olympic-hill",
+    "chunksFound": 10,
+    "chunksSelected": 9,
+    "contextLength": 7979,
+    "avgSimilarity": 0.4492024108860763
+  },
+  {
+    "timestamp": "2025-10-07T19:31:49.515Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "Give me some short quick facts about this project like budget and location?",
+    "detectedProject": null,
+    "finalProjectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T19:31:49.518Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Give me some short quick facts about this project like budget and location?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.956Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 10,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.958Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Give me some short quick facts about this project like budget and location?",
+    "projectId": "olympic-hill",
+    "chunksFound": 10,
+    "chunksSelected": 9,
+    "contextLength": 7979,
+    "avgSimilarity": 0.5031787363323241
+  },
+  {
+    "timestamp": "2025-10-07T19:35:57.924Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "Who is the project manager?",
+    "detectedProject": null,
+    "finalProjectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T19:35:57.926Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Who is the project manager?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.323Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 10,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.325Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Who is the project manager?",
+    "projectId": "olympic-hill",
+    "chunksFound": 10,
+    "chunksSelected": 9,
+    "contextLength": 7979,
+    "avgSimilarity": 0.43073855238809533
   }
 ]

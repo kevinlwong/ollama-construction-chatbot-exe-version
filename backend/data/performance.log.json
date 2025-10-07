@@ -665,5 +665,537 @@
     "projectId": "olympic-hill",
     "queryLength": 37,
     "chunksRetrieved": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.249Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1373,
+    "model": "nomic-embed-text",
+    "textLength": 2322
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.530Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1682,
+    "model": "nomic-embed-text",
+    "textLength": 1740
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.631Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1756,
+    "model": "nomic-embed-text",
+    "textLength": 485
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.960Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 2084,
+    "model": "nomic-embed-text",
+    "textLength": 2368
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.040Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 2165,
+    "model": "nomic-embed-text",
+    "textLength": 416
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.042Z",
+    "type": "performance",
+    "operation": "generate_embeddings_batch",
+    "duration": 2196,
+    "count": 5,
+    "model": "nomic-embed-text",
+    "avgPerEmbedding": 439.2
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.056Z",
+    "type": "performance",
+    "operation": "add_chunks",
+    "duration": 12,
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.057Z",
+    "type": "performance",
+    "operation": "process_document",
+    "duration": 2216,
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "textLength": 6688
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.095Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 30,
+    "model": "nomic-embed-text",
+    "textLength": 42
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.102Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 6,
+    "searchedChunks": 10,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.103Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 40,
+    "projectId": "olympic-hill",
+    "queryLength": 42,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.126Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 20,
+    "model": "nomic-embed-text",
+    "textLength": 40
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.131Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 4,
+    "searchedChunks": 10,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.132Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 26,
+    "projectId": "olympic-hill",
+    "queryLength": 40,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.154Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 20,
+    "model": "nomic-embed-text",
+    "textLength": 29
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.158Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 3,
+    "searchedChunks": 10,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.160Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 26,
+    "projectId": "olympic-hill",
+    "queryLength": 29,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.186Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 21,
+    "model": "nomic-embed-text",
+    "textLength": 41
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.190Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 3,
+    "searchedChunks": 10,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.192Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 28,
+    "projectId": "olympic-hill",
+    "queryLength": 41,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.218Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 23,
+    "model": "nomic-embed-text",
+    "textLength": 47
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.223Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 4,
+    "searchedChunks": 10,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.224Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 29,
+    "projectId": "olympic-hill",
+    "queryLength": 47,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.108Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 187,
+    "model": "nomic-embed-text",
+    "textLength": 36
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.114Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 6,
+    "searchedChunks": 10,
+    "resultsFound": 10
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.117Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 198,
+    "projectId": "olympic-hill",
+    "queryLength": 36,
+    "chunksRetrieved": 7
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.067Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 661,
+    "model": "nomic-embed-text",
+    "textLength": 1740
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.399Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 967,
+    "model": "nomic-embed-text",
+    "textLength": 2322
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.501Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1068,
+    "model": "nomic-embed-text",
+    "textLength": 485
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.874Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1441,
+    "model": "nomic-embed-text",
+    "textLength": 2368
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.978Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1544,
+    "model": "nomic-embed-text",
+    "textLength": 416
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.979Z",
+    "type": "performance",
+    "operation": "generate_embeddings_batch",
+    "duration": 1575,
+    "count": 5,
+    "model": "nomic-embed-text",
+    "avgPerEmbedding": 315
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.998Z",
+    "type": "performance",
+    "operation": "add_chunks",
+    "duration": 17,
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.999Z",
+    "type": "performance",
+    "operation": "process_document",
+    "duration": 1599,
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "textLength": 6688
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.032Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 22,
+    "model": "nomic-embed-text",
+    "textLength": 42
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.039Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 6,
+    "searchedChunks": 15,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.041Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 33,
+    "projectId": "olympic-hill",
+    "queryLength": 42,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.067Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 22,
+    "model": "nomic-embed-text",
+    "textLength": 40
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.073Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 5,
+    "searchedChunks": 15,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.074Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 31,
+    "projectId": "olympic-hill",
+    "queryLength": 40,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.098Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 20,
+    "model": "nomic-embed-text",
+    "textLength": 29
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.104Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 5,
+    "searchedChunks": 15,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.106Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 29,
+    "projectId": "olympic-hill",
+    "queryLength": 29,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.131Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 22,
+    "model": "nomic-embed-text",
+    "textLength": 41
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.136Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 4,
+    "searchedChunks": 15,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.138Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 30,
+    "projectId": "olympic-hill",
+    "queryLength": 41,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.161Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 20,
+    "model": "nomic-embed-text",
+    "textLength": 47
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.167Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 5,
+    "searchedChunks": 15,
+    "resultsFound": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.169Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 29,
+    "projectId": "olympic-hill",
+    "queryLength": 47,
+    "chunksRetrieved": 6
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.174Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 2143,
+    "model": "nomic-embed-text",
+    "textLength": 36
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.196Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 19,
+    "searchedChunks": 15,
+    "resultsFound": 10
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.200Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 2172,
+    "projectId": "olympic-hill",
+    "queryLength": 36,
+    "chunksRetrieved": 9
+  },
+  {
+    "timestamp": "2025-10-07T19:29:50.451Z",
+    "type": "performance",
+    "operation": "security_check",
+    "duration": 5,
+    "inputLength": 36,
+    "threatsFound": 0,
+    "action": "allow"
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.139Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 3678,
+    "model": "nomic-embed-text",
+    "textLength": 36
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.147Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 8,
+    "searchedChunks": 15,
+    "resultsFound": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.149Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 3690,
+    "projectId": "olympic-hill",
+    "queryLength": 36,
+    "chunksRetrieved": 9
+  },
+  {
+    "timestamp": "2025-10-07T19:31:49.510Z",
+    "type": "performance",
+    "operation": "security_check",
+    "duration": 6,
+    "inputLength": 75,
+    "threatsFound": 0,
+    "action": "allow"
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.947Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1426,
+    "model": "nomic-embed-text",
+    "textLength": 75
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.957Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 9,
+    "searchedChunks": 15,
+    "resultsFound": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.959Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 1441,
+    "projectId": "olympic-hill",
+    "queryLength": 75,
+    "chunksRetrieved": 9
+  },
+  {
+    "timestamp": "2025-10-07T19:35:57.921Z",
+    "type": "performance",
+    "operation": "security_check",
+    "duration": 4,
+    "inputLength": 27,
+    "threatsFound": 0,
+    "action": "allow"
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.315Z",
+    "type": "performance",
+    "operation": "generate_embedding",
+    "duration": 1387,
+    "model": "nomic-embed-text",
+    "textLength": 27
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.324Z",
+    "type": "performance",
+    "operation": "search_similar",
+    "duration": 8,
+    "searchedChunks": 15,
+    "resultsFound": 10
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.326Z",
+    "type": "performance",
+    "operation": "retrieve_context",
+    "duration": 1399,
+    "projectId": "olympic-hill",
+    "queryLength": 27,
+    "chunksRetrieved": 9
   }
 ]

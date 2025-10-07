@@ -246,5 +246,246 @@
     "textLength": 37,
     "embeddingDimension": 768,
     "duration": 2333
+  },
+  {
+    "timestamp": "2025-10-07T01:11:48.846Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 5,
+    "batchMode": true,
+    "batchSize": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.246Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 2322,
+    "embeddingDimension": 768,
+    "duration": 1373
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.529Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 1740,
+    "embeddingDimension": 768,
+    "duration": 1682
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.630Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 485,
+    "embeddingDimension": 768,
+    "duration": 1756
+  },
+  {
+    "timestamp": "2025-10-07T01:11:50.959Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 2368,
+    "embeddingDimension": 768,
+    "duration": 2084
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.040Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 416,
+    "embeddingDimension": 768,
+    "duration": 2165
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.094Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 42,
+    "embeddingDimension": 768,
+    "duration": 30
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.125Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 40,
+    "embeddingDimension": 768,
+    "duration": 20
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.154Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 29,
+    "embeddingDimension": 768,
+    "duration": 20
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.185Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 41,
+    "embeddingDimension": 768,
+    "duration": 21
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.218Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 47,
+    "embeddingDimension": 768,
+    "duration": 23
+  },
+  {
+    "timestamp": "2025-10-07T01:13:08.107Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 36,
+    "embeddingDimension": 768,
+    "duration": 187
+  },
+  {
+    "timestamp": "2025-10-07T01:14:17.404Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 5,
+    "batchMode": true,
+    "batchSize": 5
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.066Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 1740,
+    "embeddingDimension": 768,
+    "duration": 661
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.398Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 2322,
+    "embeddingDimension": 768,
+    "duration": 967
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.500Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 485,
+    "embeddingDimension": 768,
+    "duration": 1068
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.873Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 2368,
+    "embeddingDimension": 768,
+    "duration": 1441
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.977Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 416,
+    "embeddingDimension": 768,
+    "duration": 1544
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.030Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 42,
+    "embeddingDimension": 768,
+    "duration": 22
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.066Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 40,
+    "embeddingDimension": 768,
+    "duration": 22
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.097Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 29,
+    "embeddingDimension": 768,
+    "duration": 20
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.130Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 41,
+    "embeddingDimension": 768,
+    "duration": 22
+  },
+  {
+    "timestamp": "2025-10-07T01:14:19.160Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 47,
+    "embeddingDimension": 768,
+    "duration": 20
+  },
+  {
+    "timestamp": "2025-10-07T01:42:38.173Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 36,
+    "embeddingDimension": 768,
+    "duration": 2143
+  },
+  {
+    "timestamp": "2025-10-07T19:29:54.138Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 36,
+    "embeddingDimension": 768,
+    "duration": 3678
+  },
+  {
+    "timestamp": "2025-10-07T19:31:50.946Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 75,
+    "embeddingDimension": 768,
+    "duration": 1426
+  },
+  {
+    "timestamp": "2025-10-07T19:35:59.314Z",
+    "type": "embedding",
+    "model": "nomic-embed-text",
+    "chunks": 1,
+    "textLength": 27,
+    "embeddingDimension": 768,
+    "duration": 1387
   }
 ]

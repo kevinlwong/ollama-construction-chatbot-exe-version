@@ -37,5 +37,31 @@
       "duration": 3413,
       "embeddingModel": "nomic-embed-text"
     }
+  },
+  {
+    "timestamp": "2025-10-07T01:11:51.057Z",
+    "type": "document",
+    "filename": "olympic-hill-project.txt",
+    "operation": "processed_and_stored",
+    "stats": {
+      "projectId": "olympic-hill",
+      "chunkCount": 5,
+      "textLength": 6688,
+      "duration": 2216,
+      "embeddingModel": "nomic-embed-text"
+    }
+  },
+  {
+    "timestamp": "2025-10-07T01:14:18.998Z",
+    "type": "document",
+    "filename": "olympic-hill-project.txt",
+    "operation": "processed_and_stored",
+    "stats": {
+      "projectId": "olympic-hill",
+      "chunkCount": 5,
+      "textLength": 6688,
+      "duration": 1599,
+      "embeddingModel": "nomic-embed-text"
+    }
   }
 ]

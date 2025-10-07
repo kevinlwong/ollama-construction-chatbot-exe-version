@@ -220,5 +220,47 @@
     "context": {
       "ip": "::1"
     }
+  },
+  {
+    "timestamp": "2025-10-07T19:29:50.449Z",
+    "type": "security",
+    "severity": "low",
+    "event": "prompt_security_check",
+    "action": "allow",
+    "threatCount": 0,
+    "threats": [],
+    "inputLength": 36,
+    "inputPreview": "What is this project about in short?",
+    "context": {
+      "ip": "::1"
+    }
+  },
+  {
+    "timestamp": "2025-10-07T19:31:49.506Z",
+    "type": "security",
+    "severity": "low",
+    "event": "prompt_security_check",
+    "action": "allow",
+    "threatCount": 0,
+    "threats": [],
+    "inputLength": 75,
+    "inputPreview": "Give me some short quick facts about this project like budget and location?",
+    "context": {
+      "ip": "::1"
+    }
+  },
+  {
+    "timestamp": "2025-10-07T19:35:57.919Z",
+    "type": "security",
+    "severity": "low",
+    "event": "prompt_security_check",
+    "action": "allow",
+    "threatCount": 0,
+    "threats": [],
+    "inputLength": 27,
+    "inputPreview": "Who is the project manager?",
+    "context": {
+      "ip": "::1"
+    }
   }
 ]
