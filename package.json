@@ -42,10 +42,10 @@
     "files": [
       "dist/**/*",
       "electron.js",
-      "ollama-bin/**/*",
       "resources/**/*",
-      "!dist_electron/**",
-      "backend/**/**"
+      "backend/**/*",
+      "!backend/node_modules/**/*",
+      "!dist_electron/**"
     ],
     "asarUnpack": [
       "backend/**",
@@ -54,10 +54,11 @@
     "extraResources": [
       {
         "from": "resources/ollama.exe",
-        "to": "ollama.exe",
-        "filter": [
-          "**/*"
-        ]
+        "to": "ollama.exe"
+      },
+      {
+        "from": "backend/data",
+        "to": "backend/data"
       }
     ],
     "win": {

@@ -3,9 +3,9 @@ import { sidebarCollapsed } from "../sidebar/sidebar-state";
 
 export const selectedModel = ref("deepseek-r1:7b"); // default model
 export const models = [
-  { model: "deepseek-r1:7b", stage: "Pre-construction" },
-  { model: "qwen2.5:7b", stage: "Construction" },
-  { model: "deepseek-r1:7b", stage: "Post-construction" },
+  { model: "deepseek-r1:7b", stage: "Concrete" },
+  { model: "qwen2.5:7b", stage: "Carpentry" },
+  { model: "deepseek-r1:7b", stage: "General Contractor" },
 ];
 
 export const selectedStage = computed(() => {

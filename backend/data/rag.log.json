@@ -1,0 +1,920 @@
+[
+  {
+    "timestamp": "2025-10-06T23:11:09.775Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:11:09.776Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "project_created",
+    "projectId": "test-project",
+    "name": "Test Construction Project"
+  },
+  {
+    "timestamp": "2025-10-06T23:11:09.778Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "test-project",
+    "textLength": 509,
+    "filename": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:11:09.780Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "test-project",
+    "chunkOptions": {
+      "chunkSize": 500,
+      "overlap": 50,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:11:09.781Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "test-project",
+    "chunkCount": 1,
+    "avgChunkSize": 460
+  },
+  {
+    "timestamp": "2025-10-06T23:11:09.782Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "test-project",
+    "chunkCount": 1
+  },
+  {
+    "timestamp": "2025-10-06T23:11:10.069Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "embedding_generation_error",
+    "error": "Ollama embedding failed with code 1: Error: unknown command \"embed\" for \"ollama\"\n",
+    "model": "nomic-embed-text",
+    "textLength": 460
+  },
+  {
+    "timestamp": "2025-10-06T23:11:10.070Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "document_processing_error",
+    "error": "Failed to generate embedding: Ollama embedding failed with code 1: Error: unknown command \"embed\" for \"ollama\"\n",
+    "projectId": "test-project",
+    "filename": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:15:26.606Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "add_project_error",
+    "error": "Project with ID 'test-project' already exists",
+    "projectId": "test-project"
+  },
+  {
+    "timestamp": "2025-10-06T23:15:26.610Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "test-project",
+    "textLength": 509,
+    "filename": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:15:26.613Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "test-project",
+    "chunkOptions": {
+      "chunkSize": 500,
+      "overlap": 50,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:15:26.616Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "test-project",
+    "chunkCount": 1,
+    "avgChunkSize": 460
+  },
+  {
+    "timestamp": "2025-10-06T23:15:26.617Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "test-project",
+    "chunkCount": 1
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.012Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_progress",
+    "projectId": "test-project",
+    "completed": 1,
+    "total": 1,
+    "percentage": 100
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.014Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "storage_start",
+    "projectId": "test-project",
+    "chunkCount": 1
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.019Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_vector_store",
+    "chunks": 1,
+    "projects": 0
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.024Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.025Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunks_added",
+    "projectId": "test-project",
+    "chunkCount": 1,
+    "sourceFile": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.029Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What are the hard hat requirements?",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.067Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 1,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.070Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What are the hard hat requirements?",
+    "projectId": "test-project",
+    "chunksFound": 1,
+    "chunksSelected": 1,
+    "contextLength": 460,
+    "avgSimilarity": 0.6994977844252609
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.074Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Tell me about fall protection",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.107Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 1,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.109Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Tell me about fall protection",
+    "projectId": "test-project",
+    "chunksFound": 1,
+    "chunksSelected": 1,
+    "contextLength": 460,
+    "avgSimilarity": 0.6604670930991404
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.111Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Equipment safety procedures",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.142Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 1,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:15:27.143Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Equipment safety procedures",
+    "projectId": "test-project",
+    "chunksFound": 1,
+    "chunksSelected": 1,
+    "contextLength": 460,
+    "avgSimilarity": 0.692500704476266
+  },
+  {
+    "timestamp": "2025-10-06T23:17:06.289Z",
+    "type": "rag",
+    "level": "error",
+    "operation": "add_project_error",
+    "error": "Project with ID 'test-project' already exists",
+    "projectId": "test-project"
+  },
+  {
+    "timestamp": "2025-10-06T23:17:06.291Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "test-project",
+    "textLength": 509,
+    "filename": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:17:06.293Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "test-project",
+    "chunkOptions": {
+      "chunkSize": 500,
+      "overlap": 50,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:17:06.294Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "test-project",
+    "chunkCount": 1,
+    "avgChunkSize": 460
+  },
+  {
+    "timestamp": "2025-10-06T23:17:06.294Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "test-project",
+    "chunkCount": 1
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.157Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_progress",
+    "projectId": "test-project",
+    "completed": 1,
+    "total": 1,
+    "percentage": 100
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.159Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "storage_start",
+    "projectId": "test-project",
+    "chunkCount": 1
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.163Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_vector_store",
+    "chunks": 2,
+    "projects": 0
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.166Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.168Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunks_added",
+    "projectId": "test-project",
+    "chunkCount": 1,
+    "sourceFile": "safety-protocol.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.173Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What are the hard hat requirements?",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.206Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 2,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.208Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What are the hard hat requirements?",
+    "projectId": "test-project",
+    "chunksFound": 2,
+    "chunksSelected": 2,
+    "contextLength": 927,
+    "avgSimilarity": 0.6994977844252609
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.211Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Tell me about fall protection",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.242Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 2,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.244Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Tell me about fall protection",
+    "projectId": "test-project",
+    "chunksFound": 2,
+    "chunksSelected": 2,
+    "contextLength": 927,
+    "avgSimilarity": 0.6604670930991404
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.247Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Equipment safety procedures",
+    "projectId": "test-project",
+    "limit": 2,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.280Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 2,
+    "threshold": 0.1,
+    "limit": 4
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.282Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Equipment safety procedures",
+    "projectId": "test-project",
+    "chunksFound": 2,
+    "chunksSelected": 2,
+    "contextLength": 927,
+    "avgSimilarity": 0.692500704476266
+  },
+  {
+    "timestamp": "2025-10-06T23:36:05.369Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "What safety protocols should I follow for high-rise construction?",
+    "detectedProject": "downtown-olympic",
+    "finalProjectId": "test-project"
+  },
+  {
+    "timestamp": "2025-10-06T23:36:05.371Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What safety protocols should I follow for high-rise construction?",
+    "projectId": "test-project",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:36:07.419Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "test-project",
+    "resultsFound": 2,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-06T23:36:07.423Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What safety protocols should I follow for high-rise construction?",
+    "projectId": "test-project",
+    "chunksFound": 2,
+    "chunksSelected": 2,
+    "contextLength": 927,
+    "avgSimilarity": 0.7631797955282593
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.703Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 5
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.704Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "project_created",
+    "projectId": "olympic-hill",
+    "name": "Olympic Hill High-Rise Construction Project"
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.709Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "document_processing_start",
+    "projectId": "olympic-hill",
+    "textLength": 6688,
+    "filename": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.711Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_start",
+    "projectId": "olympic-hill",
+    "chunkOptions": {
+      "chunkSize": 600,
+      "overlap": 75,
+      "separator": "sentence"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.713Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunking_complete",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "avgChunkSize": 1466.2
+  },
+  {
+    "timestamp": "2025-10-06T23:47:54.714Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.094Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "embedding_progress",
+    "projectId": "olympic-hill",
+    "completed": 5,
+    "total": 5,
+    "percentage": 100
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.097Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "storage_start",
+    "projectId": "olympic-hill",
+    "chunkCount": 5
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.107Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_vector_store",
+    "chunks": 7,
+    "projects": 0
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.115Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "save_projects",
+    "projectCount": 5
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.117Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "chunks_added",
+    "projectId": "olympic-hill",
+    "chunkCount": 5,
+    "sourceFile": "olympic-hill-project.txt"
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.132Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.193Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.198Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the total budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.39405125227992915
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.202Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.238Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.242Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "Tell me about the concrete pour sequence",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.5191725926477704
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.245Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.284Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.287Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What are the site challenges?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.463314272331291
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.290Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.334Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.337Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the rebar schedule for the tower?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.44029731186612864
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.341Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.386Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.389Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "How many workers are needed for the tower crew?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.3994215860621046
+  },
+  {
+    "timestamp": "2025-10-06T23:55:08.666Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "What is the budget for Olympic Hill?",
+    "detectedProject": null,
+    "finalProjectId": "downtown-olympic"
+  },
+  {
+    "timestamp": "2025-10-06T23:55:08.668Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "downtown-olympic",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:55:10.365Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "downtown-olympic",
+    "resultsFound": 0,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-06T23:55:10.367Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "no_context_found",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "downtown-olympic"
+  },
+  {
+    "timestamp": "2025-10-06T23:59:24.749Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 3,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-06T23:59:27.269Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 6
+  },
+  {
+    "timestamp": "2025-10-06T23:59:27.271Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.3887312674454
+  },
+  {
+    "timestamp": "2025-10-07T00:00:01.383Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T00:00:02.027Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T00:00:02.030Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "What is the budget for Olympic Hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.3887312674454
+  },
+  {
+    "timestamp": "2025-10-07T00:15:26.679Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "what is the budget in olympic hill?",
+    "detectedProject": null,
+    "finalProjectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T00:15:26.682Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "what is the budget in olympic hill?",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T00:15:28.507Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T00:15:28.511Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "what is the budget in olympic hill?",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.3851519864114533
+  },
+  {
+    "timestamp": "2025-10-07T00:17:32.531Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "enhanced_retrieve_start",
+    "query": "give me some facts about this project",
+    "detectedProject": null,
+    "finalProjectId": "olympic-hill"
+  },
+  {
+    "timestamp": "2025-10-07T00:17:32.533Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_start",
+    "query": "give me some facts about this project",
+    "projectId": "olympic-hill",
+    "limit": 5,
+    "threshold": 0.1
+  },
+  {
+    "timestamp": "2025-10-07T00:17:34.883Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "similarity_search",
+    "queryProjectId": "olympic-hill",
+    "resultsFound": 5,
+    "threshold": 0.1,
+    "limit": 10
+  },
+  {
+    "timestamp": "2025-10-07T00:17:34.889Z",
+    "type": "rag",
+    "level": "info",
+    "operation": "context_retrieval_complete",
+    "query": "give me some facts about this project",
+    "projectId": "olympic-hill",
+    "chunksFound": 5,
+    "chunksSelected": 5,
+    "contextLength": 7359,
+    "avgSimilarity": 0.4076812825524604
+  }
+]

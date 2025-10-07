@@ -17,7 +17,7 @@ const OLLAMA_EXE = path.join(
   "dist_electron/win-unpacked/resources",
   "ollama.exe"
 ); // one “resources”!
-const BACKEND_CJS = path.join(rootDir, "backend", "server.cjs");
+const BACKEND_CJS = path.join(rootDir, "backend", "server-enhanced.cjs");
 const INDEX_HTML = path.join(rootDir, "dist", "index.html");
 const ICON_ICO = path.join(rootDir, "public", "icon.ico");
 

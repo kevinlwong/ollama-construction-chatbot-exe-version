@@ -1,0 +1,239 @@
+Olympic Hill High-Rise Construction Project – Downtown LA
+
+PROJECT OVERVIEW
+================
+
+Project Name: Olympic Hill High-Rise Construction Project
+Location: Downtown Los Angeles
+Owner & General Contractor: Onni Construction
+Total Budget: $500 Million
+Concrete Budget: $80 Million
+Construction Timeline: 30 months
+
+SITE SPECIFICATIONS
+==================
+
+Underground Parking: 7 levels
+Parking Requirements:
+- Bathrooms
+- Ventilation systems
+- Lighting infrastructure
+- Full OSHA compliance
+
+Reference Project: The Beaudry
+- Height: 64 stories, 695 feet
+- Type: Residential tower
+- Challenges: Tight site conditions, financing issues (stalled)
+
+SITE CHALLENGES
+===============
+
+1. Vandalism
+   - High risk area
+   - Requires enhanced site security measures
+
+2. Traffic Congestion
+   - Extreme traffic issues
+   - Crypto.com Arena event days cause additional congestion
+   - LA Convention Center events increase traffic
+   - Night work feasibility must be evaluated
+
+3. Limited Laydown Space
+   - Constrains concrete sequencing
+   - Affects material staging and storage
+
+4. Weather Delays
+   - Rain days must be planned and scheduled
+   - Weather contingency required in timeline
+
+5. Tight Site Conditions
+   - May affect sunlight for outdoor amenity areas
+   - Landscape integration over parking challenges
+
+CONCRETE WORK & POUR SEQUENCE
+==============================
+
+Concrete Type: Self-climbing concrete
+
+Pour Sequence:
+1. Foundation (poured first)
+2. Core walls (start early, pour floor by floor using self-climbing or jump forms)
+3. Vertical walls & columns (poured after or simultaneously with core)
+4. Floor slabs (poured after vertical elements, typically one floor behind core for curing)
+5. Podium slabs & transfer girders (poured early but separately, longer cycle times)
+6. Mechanical floors/architectural setbacks (custom sequencing as required)
+
+Floor Cycle Time: 5 days per floor
+Previous Best: 3 days per floor
+Goal: Optimize to reduce cycle time
+
+REBAR SCHEDULE
+==============
+
+Tower Construction:
+- Bottom mat pour date: December 2, 2022
+- Last major elevated deck: September 27, 2024
+
+Podium Construction:
+- Bottom mat pour date: March 17, 2023
+- Last major elevated deck: December 22, 2023
+
+FORMWORK SYSTEMS
+================
+
+Walls & Columns: Modular steel/aluminum panel forms
+Floor Slabs: Table forms
+Core Walls: Self-climbing or jump forms
+
+WORKFORCE & LABOR
+=================
+
+Tower Crew:
+- Size: 127 workers
+- Duration: 1 year
+- Rate: $75 per hour
+
+Podium Crew:
+- Size: 31 workers
+- Duration: 1 year
+- Rate: $75 per hour
+
+Labor Cost Spike:
+- Timing: Weeks 15-48
+- Phase: Post-foundation during sequencing
+- Impact: Heavy labor cost increase
+
+EQUIPMENT & SCHEDULING
+======================
+
+Equipment considerations:
+- Curing schedules determine daily/weekly pour capacity
+- Equipment availability affects sequencing
+- Material handling equipment required
+- Elevator access needed for material and personnel movement
+
+PERMITTING & COMPLIANCE
+========================
+
+Required Permits:
+1. Building permit set
+2. Shoring sub permit for concrete work
+3. After-hours construction permit
+4. Noise variance permit
+
+Key Success Factor: Effective communication between General Contractor and subcontractors for permitting and sequencing coordination
+
+LOGISTICS & OPERATIONS
+======================
+
+Critical Factors:
+- Heavy labor cost spike weeks 15-48 (post-foundation, during sequencing)
+- Access to elevators for material and personnel movement
+- Traffic planning around event days
+- Rain day contingency planning
+- Site security protocols
+
+Traffic Considerations:
+- Weekday traffic patterns
+- Crypto.com Arena event days
+- LA Convention Center events
+- Night work as alternative (pending feasibility)
+
+RISK MANAGEMENT
+===============
+
+Key Risks:
+1. Limited laydown space constraining concrete sequencing
+2. Tight site conditions affecting design elements
+3. Concrete pouring timing for:
+   - Podium slabs
+   - Transfer girders
+   - Mechanical floors
+   - Architectural setbacks
+4. Permitting delays
+5. Coordination issues with General Contractor
+6. Vandalism and site security
+7. Weather delays
+8. Traffic-related delays
+
+Critical Bottlenecks:
+- Podium slab and transfer girder pours require careful timing
+- Mechanical floor concrete work needs custom sequencing
+- Architectural setback areas need special attention
+- Limited space affects overall project flow
+
+SUBCONTRACTOR RELATIONSHIPS
+============================
+
+Concrete Subcontractor Profile:
+- Leverage long-standing relationships with rebar suppliers
+- Established relationships with material suppliers
+- Active participants in concrete subcontractor market
+- Experience with high-rise construction
+- Understanding of tight urban site conditions
+
+Supply Chain Considerations:
+- Rebar supply continuity
+- Concrete supply scheduling
+- Material delivery coordination
+- Just-in-time delivery due to limited laydown space
+
+OSHA COMPLIANCE
+===============
+
+Required Compliance Areas:
+- Underground parking facilities (7 levels)
+- Bathroom facilities
+- Ventilation systems
+- Lighting requirements
+- Fall protection systems
+- Worker safety protocols
+- Site security and access control
+
+BEST PRACTICES & LESSONS LEARNED
+=================================
+
+From The Beaudry Reference Project:
+- Plan for tight site conditions from project start
+- Secure financing commitments early
+- Account for urban construction challenges
+- Build in contingencies for 64-story residential towers
+
+Operational Efficiency:
+- Previous best floor cycle: 3 days
+- Current target: 5 days per floor
+- Opportunity: Optimize processes to reduce cycle time
+- Equipment and curing schedules are key determinants
+
+Communication Protocol:
+- Maintain effective GC-to-subcontractor communication
+- Coordinate permitting early and often
+- Align on concrete sequencing plans
+- Regular coordination meetings required
+
+FINANCIAL SUMMARY
+=================
+
+Total Project Budget: $500,000,000
+Concrete Budget: $80,000,000 (16% of total budget)
+
+Labor Costs:
+- Tower crew: 127 workers × $75/hr × 1 year
+- Podium crew: 31 workers × $75/hr × 1 year
+- Cost spike period: Weeks 15-48
+
+Timeline: 30 months total construction duration
+
+PROJECT SUCCESS FACTORS
+========================
+
+1. Effective concrete sequencing despite limited space
+2. Strong GC-subcontractor communication
+3. Proactive permitting and variance management
+4. Weather contingency planning
+5. Traffic management and scheduling flexibility
+6. Site security and vandalism prevention
+7. Supply chain management and long-term supplier relationships
+8. OSHA compliance throughout all phases
+9. Equipment optimization for pour capacity
+10. Workforce management during labor spike periods

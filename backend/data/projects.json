@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "created": "2025-01-06T00:00:00Z",
+  "projects": [
+    {
+      "id": "downtown-olympic",
+      "name": "Downtown Olympic/Hill",
+      "description": "High-rise construction project in downtown area",
+      "active": true,
+      "created": "2025-01-06T00:00:00Z",
+      "tags": [
+        "high-rise",
+        "downtown",
+        "commercial"
+      ],
+      "metadata": {
+        "type": "commercial",
+        "status": "active",
+        "location": "Downtown Olympic"
+      },
+      "document_count": 0
+    },
+    {
+      "id": "highland-park",
+      "name": "Highland Park Residential",
+      "description": "Residential development project in Highland Park",
+      "active": true,
+      "created": "2025-01-06T00:00:00Z",
+      "tags": [
+        "residential",
+        "highland-park",
+        "development"
+      ],
+      "metadata": {
+        "type": "residential",
+        "status": "active",
+        "location": "Highland Park"
+      },
+      "document_count": 0
+    },
+    {
+      "id": "santa-monica-expansion",
+      "name": "Santa Monica Expansion",
+      "description": "Coastal expansion project with green building standards",
+      "active": true,
+      "created": "2025-01-06T00:00:00Z",
+      "tags": [
+        "coastal",
+        "green-building",
+        "expansion"
+      ],
+      "metadata": {
+        "type": "mixed-use",
+        "status": "planning",
+        "location": "Santa Monica"
+      },
+      "document_count": 0
+    },
+    {
+      "id": "test-project",
+      "name": "Test Construction Project",
+      "description": "A test project for RAG system validation",
+      "active": true,
+      "created": "2025-10-06T23:11:09.773Z",
+      "tags": [
+        "test",
+        "construction"
+      ],
+      "metadata": {},
+      "document_count": 1
+    },
+    {
+      "id": "olympic-hill",
+      "name": "Olympic Hill High-Rise Construction Project",
+      "description": "Downtown LA high-rise construction project by Onni Construction. $500M budget, 30-month timeline, 7-level underground parking.",
+      "active": true,
+      "created": "2025-10-06T23:47:54.700Z",
+      "tags": [
+        "downtown-la",
+        "high-rise",
+        "onni-construction",
+        "residential",
+        "concrete"
+      ],
+      "metadata": {
+        "location": "Downtown Los Angeles",
+        "general_contractor": "Onni Construction",
+        "budget": "$500M",
+        "timeline": "30 months",
+        "concrete_budget": "$80M",
+        "parking_levels": 7
+      },
+      "document_count": 1
+    }
+  ]
+}

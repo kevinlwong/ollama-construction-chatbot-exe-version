@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2025-10-06T23:15:27.026Z",
+    "type": "document",
+    "filename": "safety-protocol.txt",
+    "operation": "processed_and_stored",
+    "stats": {
+      "projectId": "test-project",
+      "chunkCount": 1,
+      "textLength": 509,
+      "duration": 416,
+      "embeddingModel": "nomic-embed-text"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:17:07.170Z",
+    "type": "document",
+    "filename": "safety-protocol.txt",
+    "operation": "processed_and_stored",
+    "stats": {
+      "projectId": "test-project",
+      "chunkCount": 1,
+      "textLength": 509,
+      "duration": 879,
+      "embeddingModel": "nomic-embed-text"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T23:47:58.122Z",
+    "type": "document",
+    "filename": "olympic-hill-project.txt",
+    "operation": "processed_and_stored",
+    "stats": {
+      "projectId": "olympic-hill",
+      "chunkCount": 5,
+      "textLength": 6688,
+      "duration": 3413,
+      "embeddingModel": "nomic-embed-text"
+    }
+  }
+]

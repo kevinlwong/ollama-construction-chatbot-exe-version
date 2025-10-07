@@ -42,6 +42,18 @@
             </div>
         </div>
 
+        <!-- Project Selector -->
+        <div class="project-selector">
+            <label>Project Context:</label>
+            <select v-model="selectedProject">
+                <option value="test-project">Test Project (Safety Protocol)</option>
+                <option value="olympic-hill">Downtown Olympic/Hill</option>
+                <option value="highland-park">Highland Park Residential</option>
+                <option value="santa-monica-expansion">Santa Monica Expansion</option>
+                <option value="">No Project (General Chat)</option>
+            </select>
+        </div>
+
         <!-- Chat Input Box -->
         <div class="chat-input">
             <FileDropUploader :key="uploaderKey" @file-selected="onFileSelected" />
@@ -80,6 +92,8 @@ export default {
             finalMessageBuffer: '',
             isProcessingFinal: false,
             uploaderKey: 0,
+            selectedProject: 'olympic-hill', // Default to Olympic Hill project
+            availableProjects: [],
         };
     },
     methods: {
@@ -192,10 +206,16 @@ export default {
             }
 
             try {
-                const response = await fetch("http://localhost:11434/api/generate", {
+                // Use enhanced backend with RAG support instead of direct Ollama
+                console.log('[Chat] Sending message with project_id:', this.selectedProject);
+                const response = await fetch("http://localhost:5000/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ model: this.model, prompt: messageToSend }),
+                    body: JSON.stringify({
+                        model: this.model,
+                        message: messageToSend,
+                        project_id: this.selectedProject || null
+                    }),
                 });
 
                 const reader = response.body.getReader();
@@ -204,51 +224,39 @@ export default {
                 // let botMessageIndex = this.messages.length;
                 finalIndex = -1;
 
+                let buffer = '';
+
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) break;
 
                     const chunk = decoder.decode(value);
-                    const lines = chunk.trim().split("\n");
+                    buffer += chunk;
+                    
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop(); // Keep the incomplete line in buffer
 
                     for (const line of lines) {
+                        if (!line.trim()) continue;
                         try {
                             const parsed = JSON.parse(line);
-
-                            if (parsed.response.includes("<think>")) {
-                                isThinking = true;
-                                receivedThinkTag = true;
-                                thinkingText = "";
-                            }
-
-                            if (isThinking) {
-                                const snippet = parsed.response.replace(/<\/?think>/g, "").trim();
+                            
+                            // Handle enhanced backend response format
+                            if (parsed.type === 'status') {
+                                // Status message from enhanced backend
+                                continue;
+                            } else if (parsed.type === 'thinking') {
+                                // Thinking phase
                                 if (thinkingIndex !== -1) {
-                                    thinkingText += (thinkingText ? " " : "") + snippet;
-                                    this.messages[thinkingIndex].text = thinkingText;
+                                    this.messages[thinkingIndex].text = parsed.text;
                                     this.$forceUpdate();
                                 }
                                 if (thinkingAnimationActive) {
                                     thinkingAnimationActive = false;
                                 }
-                            }
-
-                            if (parsed.response.includes("</think>")) {
-                                isThinking = false;
-
-                                if (!thinkingText.trim()) {
-                                    this.messages[thinkingIndex].text = "No thinking phase for this question.";
-                                }
-                                this.messages[thinkingIndex].expanded = false;
-
-                                if (this.model.includes("deepseek")) {
-                                    this.messages[thinkingIndex].text = thinkingText.trim();
-                                    this.messages[thinkingIndex].expanded = false;
-                                }
-                            }
-
-                            // If we are no longer in <think>, the text is "final"
-                            if (!isThinking) {
+                                continue;
+                            } else if (parsed.type === 'final') {
+                                // Final response
                                 if (finalIndex === -1) {
                                     this.messages.push({
                                         sender: "bot",
@@ -257,9 +265,61 @@ export default {
                                     });
                                     finalIndex = this.messages.length - 1;
                                 }
-                                this.finalMessageBuffer += parsed.response;
+                                this.finalMessageBuffer += parsed.text;
                                 if (!this.isProcessingFinal) {
                                     this.processFinalMessage(finalIndex);
+                                }
+                                continue;
+                            }
+                            
+                            // Fallback: handle old Ollama format for compatibility
+                            if (parsed.response !== undefined) {
+                                if (parsed.response.includes("<think>")) {
+                                    isThinking = true;
+                                    receivedThinkTag = true;
+                                    thinkingText = "";
+                                }
+
+                                if (isThinking) {
+                                    const snippet = parsed.response.replace(/<\/?think>/g, "").trim();
+                                    if (thinkingIndex !== -1) {
+                                        thinkingText += (thinkingText ? " " : "") + snippet;
+                                        this.messages[thinkingIndex].text = thinkingText;
+                                        this.$forceUpdate();
+                                    }
+                                    if (thinkingAnimationActive) {
+                                        thinkingAnimationActive = false;
+                                    }
+                                }
+
+                                if (parsed.response.includes("</think>")) {
+                                    isThinking = false;
+
+                                    if (!thinkingText.trim()) {
+                                        this.messages[thinkingIndex].text = "No thinking phase for this question.";
+                                    }
+                                    this.messages[thinkingIndex].expanded = false;
+
+                                    if (this.model.includes("deepseek")) {
+                                        this.messages[thinkingIndex].text = thinkingText.trim();
+                                        this.messages[thinkingIndex].expanded = false;
+                                    }
+                                }
+
+                                // If we are no longer in <think>, the text is "final"
+                                if (!isThinking) {
+                                    if (finalIndex === -1) {
+                                        this.messages.push({
+                                            sender: "bot",
+                                            text: "",
+                                            type: "final",
+                                        });
+                                        finalIndex = this.messages.length - 1;
+                                    }
+                                    this.finalMessageBuffer += parsed.response;
+                                    if (!this.isProcessingFinal) {
+                                        this.processFinalMessage(finalIndex);
+                                    }
                                 }
                             }
                         } catch (error) {
@@ -498,6 +558,40 @@ export default {
 
 .toggle-thinking:focus {
     outline: none;
+}
+
+/* Project selector */
+.project-selector {
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.project-selector label {
+    color: #646464;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.project-selector select {
+    padding: 8px 12px;
+    border: 1px solid #646464;
+    border-radius: 5px;
+    background: #fff;
+    color: #646464;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.project-selector select:hover {
+    border-color: #34eb98;
+}
+
+.project-selector select:focus {
+    border-color: #34eb98;
+    box-shadow: 0 0 5px rgba(52, 235, 152, 0.3);
 }
 
 /* Chat input box */
